@@ -14,7 +14,7 @@
   		<main role="main" class="container content">
 	  			<form class="form-search-landing text-center">
 		  			<div class="padding-spacing-vertical">
-			  			<img alt="Synistry" src="../images/logo_placeholder.png" width="65%" class="padding-spacing-vertical">
+			  			<img alt="Synistry" src="../images/Synistry-logo.png" width="65%" class="padding-spacing-vertical">
 				      	<input class="form-control padding-spacing-vertical" type="search" placeholder="Estilo o concepto artístico" aria-label="Search" autofocus="">
 				     	<button class="btn btn-danger btn-lg padding-spacing-vertical" type="submit">Buscar</button>
 		  			</div>
