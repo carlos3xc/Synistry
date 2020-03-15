@@ -49,7 +49,7 @@ footer{
 
 form.form-search-landing{
 	max-width: 550px;
-	padding-top: 100px !important;
+	/* padding-top: 100px !important;*/
 	padding: 15px;
 	margin: 0 auto;
 	
