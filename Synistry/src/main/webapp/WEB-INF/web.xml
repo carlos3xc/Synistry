@@ -50,7 +50,6 @@
   	<servlet-name>DevianartAuthController</servlet-name>
   	<url-pattern>/AuthController/devianart</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>DevianartOAuth2Callback</display-name>
@@ -62,10 +61,9 @@
     </init-param>
     <init-param>
     	<param-name>onSuccess</param-name>
-    	<param-value>redirect:homePage</param-value>
+    	<param-value>redirect:HomeServlet</param-value>
     </init-param>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>DevianartOAuth2Callback</servlet-name>
     <url-pattern>/oauth2callback/devianart</url-pattern>
