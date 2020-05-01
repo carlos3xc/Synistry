@@ -34,42 +34,42 @@
   			initiation servlet could be	/AuthController/X, and the url-pattern of the callback
   			 servlet must be /oauth2callback/X.
   -->
-  <!--    Spotify example -->
+  <!--    Devianart  -->
   
-  <!--  
+   
   <servlet>
-    <description></description>
-    <display-name>SpotifyAuthController</display-name>
-    <servlet-name>SpotifyAuthController</servlet-name>
+    <description/>
+    <servlet-name>DevianartAuthController</servlet-name>
     <servlet-class>aiss.controller.oauth.GenericAuthController</servlet-class>
     <init-param>
     	<param-name>provider</param-name>
-    	<param-value>Spotify</param-value>
+    	<param-value>devianart</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SpotifyAuthController</servlet-name>
-    <url-pattern>/AuthController/Spotify</url-pattern>
+  	<servlet-name>DevianartAuthController</servlet-name>
+  	<url-pattern>/AuthController/devianart</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
-    <display-name>SpotifyOAuth2Callback</display-name>
-    <servlet-name>SpotifyOAuth2Callback</servlet-name>
+    <display-name>DevianartOAuth2Callback</display-name>
+    <servlet-name>DevianartOAuth2Callback</servlet-name>
     <servlet-class>aiss.controller.oauth.OAuth2Callback</servlet-class>
     <init-param>
     	<param-name>provider</param-name>
-    	<param-value>Spotify</param-value>
+    	<param-value>devianart</param-value>
     </init-param>
     <init-param>
     	<param-name>onSuccess</param-name>
-    	<param-value>close</param-value>
+    	<param-value>redirect:homePage</param-value>
     </init-param>
   </servlet>
+  
   <servlet-mapping>
-    <servlet-name>SpotifyOAuth2Callback</servlet-name>
-    <url-pattern>/oauth2callback/Spotify</url-pattern>
+    <servlet-name>DevianartOAuth2Callback</servlet-name>
+    <url-pattern>/oauth2callback/devianart</url-pattern>
   </servlet-mapping>
   
-  -->
 
 </web-app>
