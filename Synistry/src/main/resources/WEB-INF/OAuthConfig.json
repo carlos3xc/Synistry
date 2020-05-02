@@ -1,9 +1,9 @@
-{
-"devianart":{
-	"tokenUrl":"https://www.deviantart.com/oauth2/token",
-	"clientId":"12037",
-	"clientSecret":"b1cecd68ec5351140ae8526255bb0d50",
-	"authorizationFormUrl":"https://www.deviantart.com/oauth2/authorize",
-	"scopes":["user"]
-}
-}
+{	
+    "Deviantart": { 
+        "tokenUrl": "https://www.deviantart.com/oauth2/token",
+        "clientId": "12084",
+        "clientSecret": "071a1cd6512a1e4322d847f0478134ec",
+        "authorizationFormUrl": "https://www.deviantart.com/oauth2/authorize",
+        "scopes": []
+    }
+}		
