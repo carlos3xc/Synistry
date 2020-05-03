@@ -7,10 +7,12 @@
   <%@ include file="../masterpage/meta.jsp" %> 
     <title>Error</title>
   </head>
-
 	<body>
-	<h1>ERROR algo ha ido mal</h1>
-  </body>
+		<fieldset id = "placebo">
+			<legend>Estado del placebo</legend>
+			<span>Es: <c:out value='${requestScope.resultado}'/></span>
+		</fieldset>
+</body>
    
 </html>
     

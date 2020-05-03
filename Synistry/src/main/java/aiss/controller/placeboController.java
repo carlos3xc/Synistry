@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,28 +19,26 @@ public class placeboController extends HttpServlet{
 	
 	private static final Logger log = Logger.getLogger(placeboController.class.getName());
 	
-	public placeboController() {
-		super();
-	}
 	
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
-		RequestDispatcher rd = null;
 		log.log(Level.FINE, "Testeando el placebo del token");
-		placeboResource placebo = new placeboResource();
-		Placebo placeboResult = placebo.getPlacebo();
-		
-		if (placeboResult!=null) {
-			rd = request.getRequestDispatcher("/success.jsp");
-			request.setAttribute("resultado", placeboResult);
-		}else {
-			log.log(Level.SEVERE, "Amadeus Object" + placeboResult);
-			rd = request.getRequestDispatcher("/error.jsp");
+		String token = (String) request.getSession().getAttribute("Deviantart-token");
+		if (token!=null && !"".equals(token)) {
+			placeboResource resource = new placeboResource(token);
+			Placebo placeboResult = resource.getPlacebo();
+			
+			if (placeboResult!=null) {
+				request.setAttribute("resultado", placeboResult.getStatus());
+				request.getRequestDispatcher("/views/success.jsp").forward(request, response);
+			} else {
+				log.warning("Intentando obtener placebo sin token");
+				request.getRequestDispatcher("/views/error.jsp").forward(request, response);
+			}
+		} else {
+			request.getRequestDispatcher("/AuthController/Deviantart").forward(request, response);
 		}
-		rd.forward(request, response);
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
 		doGet(request,response);
