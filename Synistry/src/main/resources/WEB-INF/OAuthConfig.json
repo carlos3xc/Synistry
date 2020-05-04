@@ -5,5 +5,14 @@
         "clientSecret": "071a1cd6512a1e4322d847f0478134ec",
         "authorizationFormUrl": "https://www.deviantart.com/oauth2/authorize",
         "scopes": []
-    }
+    },
+    "Reddit": { 
+        "tokenUrl": "https://www.reddit.com/api/v1/access_token",
+        "clientId": "xcrPycPvI6fEtA",
+        "clientSecret": "UcKoWnbWmsjz3N2vD6lLFuLe5h0",
+        "authorizationFormUrl": "https://www.reddit.com/api/v1/authorize",
+        "response_type": "code",
+        "duration": "permanent",
+        "scopes": ["read", "save", "vote"]
+        }
 }		
