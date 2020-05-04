@@ -83,6 +83,36 @@
     <url-pattern>/oauth2callback/Deviantart</url-pattern>
   </servlet-mapping>
   
-  
-
+  <servlet>
+    <description></description>
+    <display-name>DribbbleAuthController</display-name>
+    <servlet-name>DribbbleAuthController</servlet-name>
+    <servlet-class>aiss.controller.oauth.GenericAuthController</servlet-class>
+    <init-param>
+    	<param-name>provider</param-name>
+    	<param-value>Dribbble</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DribbbleAuthController</servlet-name>
+    <url-pattern>/AuthController/Dribbble</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DribbbleOAuth2Callback</display-name>
+    <servlet-name>DribbbleOAuth2Callback</servlet-name>
+    <servlet-class>aiss.controller.oauth.OAuth2Callback</servlet-class>
+    <init-param>
+    	<param-name>provider</param-name>
+    	<param-value>Dribbble</param-value>
+    </init-param>
+    <init-param>
+    	<param-name>onSuccess</param-name>
+    	<param-value>redirect:HomeServlet</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DribbbleOAuth2Callback</servlet-name>
+    <url-pattern>/oauth2callback/Dribbble</url-pattern>
+  </servlet-mapping>
 </web-app>
