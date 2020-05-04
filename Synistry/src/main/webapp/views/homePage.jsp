@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html> 
 <html>
   <head>
@@ -20,29 +21,52 @@
 		  			</div>
 			      
 		    	</form>
-		    	<h2>Descripción</h2>
-		    	<p>Synistry es un mashup para ayudar a los artistas a superar los bloqueos creativos. 
-		    	Empezando por una simple idea o concepto, podemos empezar a navegar entre millones de publicaciones de otros usuarios,
-		    	viendo en un mismo sitio contenido de Pintarest, DevianArt y Reddit.</p>
-		    	<p>No solo podemos ver contenido, sino que también podemos autenticarnos en las plataformas para las que se dan soporte
-		    	y publicar con un solo click en todas nuestras plataformas, lo que te hará más fácil cuidar tu prescencia online y aumentar tus seguidores.</p>
-		    	<br/>
-		    	<h2>Integrantes</h2>
-			    	<ul>
-			    		<li>Carlos Manuel Cabello Colmenares (carcabcol@alum.us.es)</li>
-			    		<li>José Martín Sánchez (josmarsan24@alum.us.es)</li>
-			    		<li>Juan Antonio Mena Vargas (Juanantoniomenavargas@gmail.com)</li>
-			    		<li>Rafael Díaz García (rafadg9@gmail.com)</li>
-			    	</ul>
-			    <br/>
-			    <h2>APIs a integrar</h2>
-			    	<ul>
-			    		<li><a href="https://developers.pinterest.com/docs/getting-started/introduction/?">Pintarest</a></li>
-			    		<li><a href="https://www.deviantart.com/developers/">DevianArt</a></li>
-			    		<li><a href="https://www.reddit.com/dev/api/">Reddit</a></li>
-			    		<li><a href="https://developer.dribbble.com/v2/">Dribble</a></li>
-			    	</ul>
-			    <br/>
+		    	
+		    	
+		    	<c:choose>
+					<c:when test='${empty sessionScope["Deviantart-token"]}'>
+					</c:when>
+					<c:otherwise>    	
+					    <div class="row">
+					      <div class="col-md-4 mb-5">
+					        <div class="card h-100">
+					          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+					          <div class="card-body">
+					            <h4 class="card-title">Card title</h4>
+					            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
+					          </div>
+					          <div class="card-footer">
+					            <a href="#" class="btn btn-primary">Find Out More!</a>
+					          </div>
+					        </div>
+					      </div>
+					      <div class="col-md-4 mb-5">
+					        <div class="card h-100">
+					          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+					          <div class="card-body">
+					            <h4 class="card-title">Card title</h4>
+					            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
+					          </div>
+					          <div class="card-footer">
+					            <a href="#" class="btn btn-primary">Find Out More!</a>
+					          </div>
+					        </div>
+					      </div>
+					      <div class="col-md-4 mb-5">
+					        <div class="card h-100">
+					          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+					          <div class="card-body">
+					            <h4 class="card-title">Card title</h4>
+					            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+					          </div>
+					          <div class="card-footer">
+					            <a href="#" class="btn btn-primary">Find Out More!</a>
+					          </div>
+					        </div>
+					      </div>
+					    </div>
+					</c:otherwise>
+				</c:choose> 
     	</main>
     		<%@ include file="../masterpage/footer.jsp" %>
     	</div> 

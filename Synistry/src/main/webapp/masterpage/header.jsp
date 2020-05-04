@@ -36,9 +36,6 @@
 					</c:when>
 					<c:otherwise>
 						<span> Dribbble-token: <c:out value='${sessionScope["Dribbble-token"]}'/></span>
-					<form id="placeboForm" action="placeboController" method="post">
-			 			<input type="submit" name="placeboBtn" title="placebo" value="Test api" class="btn btn-dark btn-lg padding-spacing-sides">
-			 		</form>
 					</c:otherwise>
 				</c:choose> 
  </div>  

@@ -6,12 +6,12 @@
         "authorizationFormUrl": "https://www.deviantart.com/oauth2/authorize",
         "scopes": []
     } ,
-    
+ 
     "Dribbble": { 
-    "tokenUrl": "https://dribbble.com/oauth/token",
+    	"tokenUrl": "https://dribbble.com/oauth/token",
         "clientId": "d32f264f4b386e238ba861d25b4866d7a477accae9ccb40e4a1e3c087bf0ec07",
         "clientSecret": "4a634e12b947d3ef9313d79c661bda558b91db5a1ad1a2b9c922415be5bc59be",
-         "authorizationFormUrl": "https://dribbble.com/oauth/authorize",
+        "authorizationFormUrl": "https://dribbble.com/oauth/authorize",
         "scopes": []
      }
 }		
