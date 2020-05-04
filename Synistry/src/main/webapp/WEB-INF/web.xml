@@ -115,7 +115,4 @@
     <servlet-name>DribbbleOAuth2Callback</servlet-name>
     <url-pattern>/oauth2callback/Dribbble</url-pattern>
   </servlet-mapping>
-  
-  
-
 </web-app>

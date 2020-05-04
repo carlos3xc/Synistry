@@ -5,6 +5,7 @@
         "clientSecret": "071a1cd6512a1e4322d847f0478134ec",
         "authorizationFormUrl": "https://www.deviantart.com/oauth2/authorize",
         "scopes": []
+
     } ,
  
     "Dribbble": { 
@@ -14,4 +15,6 @@
         "authorizationFormUrl": "https://dribbble.com/oauth/authorize",
         "scopes": []
      }
+
+
 }		
