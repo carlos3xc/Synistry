@@ -9,28 +9,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import aiss.model.deviantart.Placebo;
-import aiss.model.resources.placeboResource;
+import aiss.model.deviantart.PopularDeviantart;
+import aiss.model.resources.DeviantartResource;
 
 
-public class placeboController extends HttpServlet{
+public class popularDeviantartController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static final Logger log = Logger.getLogger(placeboController.class.getName());
+	private static final Logger log = Logger.getLogger(popularDeviantartController.class.getName());
 	
 	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
-		log.log(Level.FINE, "Testeando el placebo del token");
+		log.log(Level.FINE, "Accediendo a populares");
 		String token = (String) request.getSession().getAttribute("Deviantart-token");
 		if (token!=null && !"".equals(token)) {
-			placeboResource resource = new placeboResource(token);
-			Placebo placeboResult = resource.getPlacebo();
+			DeviantartResource resource = new DeviantartResource(token);
+			PopularDeviantart popularResults = resource.getPopular();
 			
-			if (placeboResult!=null) {
-				request.setAttribute("resultado", placeboResult.getStatus());
-				request.getRequestDispatcher("/views/success.jsp").forward(request, response);
+			if (popularResults!=null) {
+				request.setAttribute("publicacionesPopular", popularResults.getResults());
+				request.getRequestDispatcher("/").forward(request, response);
 			} else {
 				log.warning("Intentando obtener placebo sin token");
 				request.getRequestDispatcher("/views/error.jsp").forward(request, response);

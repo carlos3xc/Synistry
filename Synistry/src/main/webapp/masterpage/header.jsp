@@ -23,10 +23,16 @@
 						<a href="/AuthController/Deviantart"class="btn btn-dark btn-lg padding-spacing-sides">Devianart Login</a>
 					</c:when>
 					<c:otherwise>
-						<span> Devianart-token: <c:out value='${sessionScope["Deviantart-token"]}'/></span>
-					<form id="placeboForm" action="placeboController" method="post">
-			 			<input type="submit" name="placeboBtn" title="placebo" value="Test api" class="btn btn-dark btn-lg padding-spacing-sides">
-			 		</form>
+						<span> Devianart-token: <c:out value='${sessionScope["Deviantart-token"]}'/>  </span>
+					</c:otherwise>
+				</c:choose> 
+				
+				<c:choose>
+					<c:when test='${empty sessionScope["Dribbble-token"]}'>
+						<a href="/AuthController/Dribbble"class="btn btn-dark btn-lg padding-spacing-sides">Dribbble Login</a>
+					</c:when>
+					<c:otherwise>
+						<span> Dribbble-token: <c:out value='${sessionScope["Dribbble-token"]}'/>  </span>
 					</c:otherwise>
 				</c:choose> 
  </div>  

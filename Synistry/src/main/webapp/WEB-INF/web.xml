@@ -15,16 +15,15 @@
 	<welcome-file-list>
 		<welcome-file>HomeServlet</welcome-file>
 	</welcome-file-list>
-	
-	
+		
 	<servlet>
-  <servlet-name>placeboController</servlet-name>
-  <servlet-class>aiss.controller.placeboController</servlet-class>
+  <servlet-name>popularDeviantartController</servlet-name>
+  <servlet-class>aiss.controller.popularDeviantartController</servlet-class>
 </servlet>
 
 <servlet-mapping>
-  <servlet-name>placeboController</servlet-name>
-  <url-pattern>/oauth2callback/placeboController</url-pattern>
+  <servlet-name>popularDeviantartController</servlet-name>
+  <url-pattern>/oauth2callback/popularDeviantartController</url-pattern>
 </servlet-mapping>
 	
 	
@@ -46,8 +45,7 @@
   			Our recommendation is that if you expecify X as the provider, the url-pattern of the 
   			initiation servlet could be	/AuthController/X, and the url-pattern of the callback
   			 servlet must be /oauth2callback/X.
-  -->
-  <!--    Deviantart example -->
+  -->  <!--    Deviantart example -->
   
   
   <servlet>
@@ -83,6 +81,36 @@
     <url-pattern>/oauth2callback/Deviantart</url-pattern>
   </servlet-mapping>
   
-  
-
+  <servlet>
+    <description></description>
+    <display-name>DribbbleAuthController</display-name>
+    <servlet-name>DribbbleAuthController</servlet-name>
+    <servlet-class>aiss.controller.oauth.GenericAuthController</servlet-class>
+    <init-param>
+    	<param-name>provider</param-name>
+    	<param-value>Dribbble</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DribbbleAuthController</servlet-name>
+    <url-pattern>/AuthController/Dribbble</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DribbbleOAuth2Callback</display-name>
+    <servlet-name>DribbbleOAuth2Callback</servlet-name>
+    <servlet-class>aiss.controller.oauth.OAuth2Callback</servlet-class>
+    <init-param>
+    	<param-name>provider</param-name>
+    	<param-value>Dribbble</param-value>
+    </init-param>
+    <init-param>
+    	<param-name>onSuccess</param-name>
+    	<param-value>redirect:HomeServlet</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DribbbleOAuth2Callback</servlet-name>
+    <url-pattern>/oauth2callback/Dribbble</url-pattern>
+  </servlet-mapping>
 </web-app>

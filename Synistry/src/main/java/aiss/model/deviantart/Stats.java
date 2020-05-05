@@ -6,31 +6,42 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "status"
+    "comments",
+    "favourites"
 })
-@JsonIgnoreProperties(ignoreUnknown=true)
-public class Placebo {
+public class Stats {
 
-    @JsonProperty("status")
-    private String status;
+    @JsonProperty("comments")
+    private Integer comments;
+    @JsonProperty("favourites")
+    private Integer favourites;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("status")
-    public String getStatus() {
-        return status;
+    @JsonProperty("comments")
+    public Integer getComments() {
+        return comments;
     }
 
-    @JsonProperty("status")
-    public void setStatus(String status) {
-        this.status = status;
+    @JsonProperty("comments")
+    public void setComments(Integer comments) {
+        this.comments = comments;
+    }
+
+    @JsonProperty("favourites")
+    public Integer getFavourites() {
+        return favourites;
+    }
+
+    @JsonProperty("favourites")
+    public void setFavourites(Integer favourites) {
+        this.favourites = favourites;
     }
 
     @JsonAnyGetter

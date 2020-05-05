@@ -8,29 +8,29 @@ import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
 
-import aiss.model.deviantart.Placebo;
+import aiss.model.deviantart.PopularDeviantart;
 
-public class placeboResource {
-	private static final Logger log = Logger.getLogger(placeboResource.class.getName());
+public class DeviantartResource {
+	private static final Logger log = Logger.getLogger(DeviantartResource.class.getName());
 	
 	 private final String access_token;
 	 
-	public placeboResource(String access_token) {
+	public DeviantartResource(String access_token) {
 		this.access_token = access_token;
 	}
 	
-	public Placebo getPlacebo() {
-		String uri = "https://www.deviantart.com/api/v1/oauth2/placebo";
+	public PopularDeviantart getPopular() {
+		String uri = "https://www.deviantart.com/api/v1/oauth2/browse/popular";
 		ClientResource cr = new ClientResource(uri);
 		 ChallengeResponse chr = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
 	        chr.setRawValue(access_token);
 	        cr.setChallengeResponse(chr);
-	     Placebo placebo = null;
+	    PopularDeviantart popular = null;
 	     try {
-	    	 placebo = cr.get(Placebo.class);
-	    	 return placebo;
+	    	 popular = cr.get(PopularDeviantart.class);
+	    	 return popular;
 		} catch (ResourceException re) {
-			log.warning("Error accediendo al placebo: " + cr.getResponse().getStatus());
+			log.warning("Error accediendo a populares: " + cr.getResponse().getStatus());
 			log.warning(uri);
 			return null;
 		}
