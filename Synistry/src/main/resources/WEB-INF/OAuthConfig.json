@@ -21,8 +21,7 @@
         "clientId": "xcrPycPvI6fEtA",
         "clientSecret": "UcKoWnbWmsjz3N2vD6lLFuLe5h0",
         "authorizationFormUrl": "https://www.reddit.com/api/v1/authorize",
-        "response_type": "code",
-        "duration": "permanent",
         "scopes": ["read", "save", "vote"]
-        }
+     }
+        
 }		
