@@ -12,12 +12,12 @@
   			<%@ include file="../masterpage/header.jsp" %> 
   		
   		<main role="main" class="container content">
-	  			<form class="form-search-landing text-center">
+	  			<form class="form-search-landing text-center" action="SearchController" method="post">
 		  			<div class="padding-spacing-vertical">
 			  			<img alt="Synistry" src="../images/Synistry-logo-letras.png" width="65%" class="padding-spacing-vertical">
-				      	<input class="form-control padding-spacing-vertical" type="search" placeholder="Estilo o concepto artístico" aria-label="Search" autofocus="">
+				      	<input class="form-control padding-spacing-vertical" name="query"  type="search" placeholder="Estilo o concepto artístico" aria-label="Search" autofocus="">
 				     	<button class="btn btn-dark btn-lg padding-spacing-vertical" type="submit">Buscar</button>
-		  			</div>
+		  		
 			      
 		    	</form>
 		    	<h2>Descripción</h2>
