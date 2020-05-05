@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" output="target/project_name-0.0.1-SNAPSHOT/WEB-INF/classes" path="src/main/java">
@@ -26,3 +27,4 @@
 	</classpathentry>
 	<classpathentry kind="output" path="target/project_name-0.0.1-SNAPSHOT/WEB-INF/classes"/>
 </classpath>
+
