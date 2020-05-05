@@ -18,8 +18,7 @@
 			  			<img alt="Synistry" src="../images/Synistry-logo-letras.png" width="65%" class="padding-spacing-vertical">
 				      	<input class="form-control padding-spacing-vertical" name="query"  type="search" placeholder="Estilo o concepto artístico" aria-label="Search" autofocus="">
 				     	<button class="btn btn-dark btn-lg padding-spacing-vertical" type="submit">Buscar</button>
-		  		
-			      
+				     </div>
 		    	</form>
 		    	
 		    	
