@@ -28,20 +28,6 @@
 	
 	
 	
-	
-	<servlet>
-		<servlet-name>SearchController</servlet-name>
-		<servlet-class>aiss.controller.busqueda.SearchController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>SearchController</servlet-name>
-		<url-pattern>/SearchController</url-pattern>
-	</servlet-mapping>
-	
-	<welcome-file-list>
-		<welcome-file>SearchController</welcome-file>
-	</welcome-file-list>
-	
 	<!--  OAUTH SERVLETS 
   
   	For each OAuth 2.0 service, you need to create two servlets: one for the initiation 
