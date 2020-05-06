@@ -10,20 +10,21 @@
 	  </button>
 	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
 	    <ul class="navbar-nav mr-auto">
-	     
 	      <li class="nav-item">
-	        <a class="nav-link" href="/views/aboutUs.jsp">Sobre nosotros</a>
+	      <form class="form-inline " action="/SearchController" method="get">
+		    <input class="form-control mr-sm-2 padding-spacing-sides" type="search" name="query" placeholder="Estilo o concepto..." aria-label="Search">
+		    <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>
+		    </form>
 	      </li>
-	       
-	    </ul>
+		    </ul>
 			
 			 
 				<c:choose>
 					<c:when test='${empty sessionScope["Deviantart-token"]}'>
-						<a href="/AuthController/Deviantart"class="btn btn-dark btn-lg padding-spacing-sides">Devianart Login</a>
+						<a href="/AuthController/Deviantart"class="btn btn-dark btn-lg padding-spacing-sides">Deviantart Login</a>
 					</c:when>
 					<c:otherwise>
-						<span> Devianart-token: <c:out value='${sessionScope["Deviantart-token"]}'/>  </span>
+						<span class="padding-spacing-sides"> Deviantart Logged </span>
 					</c:otherwise>
 				</c:choose> 
 			
@@ -32,7 +33,7 @@
 						<a href="/AuthController/Dribbble"class="btn btn-dark btn-lg padding-spacing-sides">Dribbble Login</a>
 					</c:when>
 					<c:otherwise>
-						<span> Dribbble-token: <c:out value='${sessionScope["Dribbble-token"]}'/></span>
+						<span class="padding-spacing-sides"> Dribbble Logged</span>
 					</c:otherwise>
 				</c:choose> 
  </div>  

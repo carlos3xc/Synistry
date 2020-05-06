@@ -1,4 +1,4 @@
-package aiss.controller;
+package aiss.controller.popular;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -13,11 +13,11 @@ import aiss.model.deviantart.PopularDeviantart;
 import aiss.model.resources.DeviantartResource;
 
 
-public class popularDeviantartController extends HttpServlet{
+public class PopularController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static final Logger log = Logger.getLogger(popularDeviantartController.class.getName());
+	private static final Logger log = Logger.getLogger(PopularController.class.getName());
 	
 	
 
@@ -30,7 +30,7 @@ public class popularDeviantartController extends HttpServlet{
 			
 			if (popularResults!=null) {
 				request.setAttribute("publicacionesPopular", popularResults.getResults());
-				request.getRequestDispatcher("/").forward(request, response);
+				request.getRequestDispatcher("/views/popular.jsp").forward(request, response);
 			} else {
 				log.warning("Intentando obtener placebo sin token");
 				request.getRequestDispatcher("/views/error.jsp").forward(request, response);

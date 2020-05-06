@@ -17,13 +17,13 @@
 	</welcome-file-list>
 		
 	<servlet>
-  <servlet-name>popularDeviantartController</servlet-name>
-  <servlet-class>aiss.controller.popularDeviantartController</servlet-class>
+  <servlet-name>PopularController</servlet-name>
+  <servlet-class>aiss.controller.popular.PopularController</servlet-class>
 </servlet>
 
 <servlet-mapping>
-  <servlet-name>popularDeviantartController</servlet-name>
-  <url-pattern>/oauth2callback/popularDeviantartController</url-pattern>
+  <servlet-name>PopularController</servlet-name>
+  <url-pattern>/oauth2callback/PopularController</url-pattern>
 </servlet-mapping>
 	
 	
@@ -87,7 +87,7 @@
     </init-param>
     <init-param>
     	<param-name>onSuccess</param-name>
-    	<param-value>redirect:HomeServlet</param-value>
+    	<param-value>redirect:/</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
