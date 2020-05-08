@@ -13,6 +13,7 @@
   			<%@ include file="../masterpage/header.jsp" %> 
   		
   	 		<main role="main" class="container content">
+  	 		<h1>Giphy</h1>
   	 		 <div class="row">
   	 		  <c:forEach items="${requestScope.resultadosGiphy}" var = "ResultadoGiphy">
 					      <div class="col-md-4 mb-5">
@@ -28,6 +29,24 @@
 					      </div>
 					    </c:forEach>
 					    </div>
+			<h1>Deviantart</h1>
+  	 		 <div class="row">
+					    <c:forEach items="${requestScope.deviationResults}" var = "publicacionPopular">
+					      <div class="col-md-4 mb-5">
+					        <div class="card h-100">
+					          <img class="card-img-top" src="<c:url value="${publicacionPopular.preview.src}"/>" alt="">
+					          <div class="card-body">
+					            <h4 class="card-title"><c:out value="${publicacionPopular.title}"/></h4>
+					            <p class="card-auhor">Autor: <c:out value="${publicacionPopular.author.username}"/></p>
+					          </div>
+					          <div class="card-footer">
+					            <a href="#" class="btn btn-primary">Abrir</a>
+					          </div>
+					        </div>
+					      </div>
+					      </c:forEach>
+					    </div>
+
 
 </main>
     		

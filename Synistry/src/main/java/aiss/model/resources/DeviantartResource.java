@@ -37,4 +37,25 @@ public class DeviantartResource {
 		
 		
 	}
+	
+	
+	public PopularDeviantart getSearch(String query) {
+		String uri = "https://www.deviantart.com/api/v1/oauth2/browse/popular?q="+ query + "&timerange=24hr&mature_content=true";
+		ClientResource cr = new ClientResource(uri);
+		 ChallengeResponse chr = new ChallengeResponse(ChallengeScheme.HTTP_OAUTH_BEARER);
+	        chr.setRawValue(access_token);
+	        cr.setChallengeResponse(chr);
+	    PopularDeviantart popular = null;
+	     try {
+	    	 popular = cr.get(PopularDeviantart.class);
+	    	 return popular;
+		} catch (ResourceException re) {
+			log.warning("Error accediendo a busqueda: " + cr.getResponse().getStatus());
+			log.warning(uri);
+			return null;
+		}
+		
+		
+	}
+	
 }
