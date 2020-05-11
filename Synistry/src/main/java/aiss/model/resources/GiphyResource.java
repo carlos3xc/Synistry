@@ -1,11 +1,11 @@
-package aiss.model.resource;
+package aiss.model.resources;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.eclipse.jetty.util.log.Log;
+
 import org.restlet.resource.ClientResource;
 
 import aiss.model.giphy.GiphySearch;
@@ -29,5 +29,19 @@ public class GiphyResource {
 		GiphySearch giphySearch = cr.get(GiphySearch.class);
 		
 		return giphySearch;
+	}
+	
+public  GiphySearch getCategories() throws UnsupportedEncodingException {
+		
+	
+		
+		String uri ="https://api.giphy.com/v1/gifs/categories?api_key=" + GIPHY_API_KEY  ;
+		
+		Log.log(Level.FINE , "Giphy URI : "+ uri);
+		
+		ClientResource cat = new ClientResource(uri);
+		GiphySearch giphyCategories = cat.get(GiphySearch.class);
+		
+		return giphyCategories;
 	}
 }

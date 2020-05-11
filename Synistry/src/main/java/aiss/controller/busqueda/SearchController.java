@@ -10,15 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import aiss.model.deviantart.PopularDeviantart;
 import aiss.model.giphy.GiphySearch;
-import aiss.model.resource.GiphyResource;
+import aiss.model.resources.DeviantartResource;
+import aiss.model.resources.GiphyResource;
 
 public class SearchController extends HttpServlet {
 
 	
 	 private static final long serialVersionUID= 1L;
 	 
-	 private static final Logger Log = Logger.getLogger(SearchController.class.getName());
+	 private static final Logger log = Logger.getLogger(SearchController.class.getName());
 	 
 	 public SearchController() {
 		 super();
@@ -30,21 +32,39 @@ protected void doGet(HttpServletRequest request , HttpServletResponse response) 
 	String query = request.getParameter("query");
 	RequestDispatcher rd = null;
 	
-	Log.log(Level.FINE , "Searching gifs of =" + query);
+	log.log(Level.FINE , "Searching gifs of =" + query);
 	GiphyResource gifs = new GiphyResource();
 	GiphySearch gifsResult = gifs.getSearch(query);
-	
-	
 	if(gifsResult != null) {
 		rd=request.getRequestDispatcher("/views/Search.jsp");
 		request.setAttribute("resultadosGiphy", gifsResult.getData());
 		
 	} else {
-		Log.log(Level.SEVERE , "eeee" + gifsResult);
+		log.log(Level.SEVERE , "eeee" + gifsResult);
 		rd= request.getRequestDispatcher("/error.jsp");
 		
 	}
+	
+	log.log(Level.FINE, "Accediendo a populares");
+	String token = (String) request.getSession().getAttribute("Deviantart-token");
+	if (token!=null && !"".equals(token)) {
+		DeviantartResource deviationResource = new DeviantartResource(token);
+		PopularDeviantart searchResults = deviationResource.getSearch(query);
+		
+		if (searchResults!=null) {
+			request.setAttribute("deviationResults", searchResults.getResults());
+			request.getRequestDispatcher("/views/Search.jsp").forward(request, response);
+		} else {
+			log.warning("Intentando obtener busqueda sin token");
+			request.getRequestDispatcher("/views/error.jsp").forward(request, response);
+		}
+	} else {
+		request.getRequestDispatcher("/AuthController/Deviantart").forward(request, response);
+	}
+	
 	rd.forward(request, response);
+	
+	
 }
 
 
