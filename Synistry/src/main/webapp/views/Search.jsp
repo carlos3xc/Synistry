@@ -38,9 +38,13 @@
 					          <div class="card-body">
 					            <h4 class="card-title"><c:out value="${publicacionPopular.title}"/></h4>
 					            <p class="card-auhor">Autor: <c:out value="${publicacionPopular.author.username}"/></p>
+					            <p class="card-auhor">id: <c:out value="${publicacionPopular.deviationid}"/></p>
 					          </div>
 					          <div class="card-footer">
-					            <a href="#" class="btn btn-primary">Abrir</a>
+					          <form class="form-search-landing text-center" action="/oauth2callback/PublicacionController" method="get">
+					          <input class="form-control padding-spacing-vertical" name="deviationId"  type="hidden" value="${publicacionPopular.deviationid}">
+					          <button class="btn btn-primary" type="submit">Abrir</button>
+					          </form>
 					          </div>
 					        </div>
 					      </div>
