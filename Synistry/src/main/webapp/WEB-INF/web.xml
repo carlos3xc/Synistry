@@ -15,16 +15,30 @@
 	<welcome-file-list>
 		<welcome-file>HomeServlet</welcome-file>
 	</welcome-file-list>
+		
+	<servlet>
+  		<servlet-name>PopularController</servlet-name>
+  		<servlet-class>aiss.controller.popular.PopularController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+	  <servlet-name>PopularController</servlet-name>
+	  <url-pattern>/oauth2callback/PopularController</url-pattern>
+	</servlet-mapping>
+	
 	
 	<servlet>
-	  <servlet-name>placeboController</servlet-name>
-	  <servlet-class>aiss.controller.placeboController</servlet-class>
+		<servlet-name>SearchController</servlet-name>
+		<servlet-class>aiss.controller.busqueda.SearchController</servlet-class>
 	</servlet>
-	
 	<servlet-mapping>
-	  <servlet-name>placeboController</servlet-name>
-	  <url-pattern>/oauth2callback/placeboController</url-pattern>
+		<servlet-name>SearchController</servlet-name>
+		<url-pattern>/SearchController</url-pattern>
 	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>SearchController</welcome-file>
+	</welcome-file-list>
 	
 	<!--  OAUTH SERVLETS 
   
@@ -75,7 +89,7 @@
     </init-param>
     <init-param>
     	<param-name>onSuccess</param-name>
-    	<param-value>redirect:HomeServlet</param-value>
+    	<param-value>redirect:/</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
