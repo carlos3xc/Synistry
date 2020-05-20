@@ -4,13 +4,17 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import aiss.model.deviantart.PopularDeviantart;
+import aiss.model.giphy.Example;
+import aiss.model.giphy.GiphySearch;
 import aiss.model.resources.DeviantartResource;
+import aiss.model.resources.GiphyResource;
 
 
 public class PopularController extends HttpServlet{
@@ -22,6 +26,26 @@ public class PopularController extends HttpServlet{
 	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+		
+	RequestDispatcher rd = null;
+		
+		log.log(Level.FINE , "Searching categories of giphy =");
+		
+		GiphyResource gifscat = new GiphyResource();
+		Example CategoriesResult = gifscat.getCategories();
+		
+		if(CategoriesResult != null) {
+			rd=request.getRequestDispatcher("/views/popular.jsp");
+			request.setAttribute("resultadosCategorias", CategoriesResult.getData());
+			
+		} else {
+			log.log(Level.SEVERE , "eeee" + CategoriesResult);
+			rd= request.getRequestDispatcher("/error.jsp");
+			
+		}
+		
+		
+		
 		log.log(Level.FINE, "Accediendo a populares");
 		String token = (String) request.getSession().getAttribute("Deviantart-token");
 		if (token!=null && !"".equals(token)) {
@@ -38,6 +62,10 @@ public class PopularController extends HttpServlet{
 		} else {
 			request.getRequestDispatcher("/AuthController/Deviantart").forward(request, response);
 		}
+		
+		
+		
+		rd.forward(request, response);
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{

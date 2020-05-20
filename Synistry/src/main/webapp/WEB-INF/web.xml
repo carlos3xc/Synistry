@@ -42,19 +42,6 @@
 		<welcome-file>SearchController</welcome-file>
 	</welcome-file-list>
 	
-	<servlet>
-		<servlet-name>CategoriasController</servlet-name>
-		<servlet-class>aiss.controller.categorias.CategoriasController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>CategoriasControllerr</servlet-name>
-		<url-pattern>/CategoriasController</url-pattern>
-	</servlet-mapping>
-	
-	<welcome-file-list>
-		<welcome-file>CategoriasController</welcome-file>
-	</welcome-file-list>
-	
 	<!--  OAUTH SERVLETS 
   
   	For each OAuth 2.0 service, you need to create two servlets: one for the initiation 

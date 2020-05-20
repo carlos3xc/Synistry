@@ -2,7 +2,6 @@
 package aiss.model.giphy;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -14,20 +13,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "name",
-    "name_encoded",
-    "subcategories",
-    "gif"
+    "name_encoded"
 })
-public class Datum {
+public class Subcategory {
 
     @JsonProperty("name")
     private String name;
     @JsonProperty("name_encoded")
     private String nameEncoded;
-    @JsonProperty("subcategories")
-    private List<Subcategory> subcategories = null;
-    @JsonProperty("gif")
-    private Gif gif;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -49,26 +42,6 @@ public class Datum {
     @JsonProperty("name_encoded")
     public void setNameEncoded(String nameEncoded) {
         this.nameEncoded = nameEncoded;
-    }
-
-    @JsonProperty("subcategories")
-    public List<Subcategory> getSubcategories() {
-        return subcategories;
-    }
-
-    @JsonProperty("subcategories")
-    public void setSubcategories(List<Subcategory> subcategories) {
-        this.subcategories = subcategories;
-    }
-
-    @JsonProperty("gif")
-    public Gif getGif() {
-        return gif;
-    }
-
-    @JsonProperty("gif")
-    public void setGif(Gif gif) {
-        this.gif = gif;
     }
 
     @JsonAnyGetter

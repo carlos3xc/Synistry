@@ -29,7 +29,6 @@
 			 		</form>
 					</c:otherwise>
 				</c:choose> 
-			
     	</main>
     		<%@ include file="../masterpage/footer.jsp" %>
     	</div> 

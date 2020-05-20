@@ -5,9 +5,10 @@ import java.net.URLEncoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+import org.eclipse.jetty.util.log.Log;
 import org.restlet.resource.ClientResource;
 
+import aiss.model.giphy.Example;
 import aiss.model.giphy.GiphySearch;
 
 public class GiphyResource {
@@ -21,7 +22,7 @@ public class GiphyResource {
 	
 		
 		String uri ="https://api.giphy.com/v1/gifs/search?api_key=" + GIPHY_API_KEY +"&q=" +
-				URLEncoder.encode(query , "UTF-8") + "&limit=6&offset=&rating=G&lang=es" ;
+				URLEncoder.encode(query , "UTF-8") + "&limit=8&offset=&rating=G&lang=es" ;
 		
 		Log.log(Level.FINE , "Giphy URI : "+ uri);
 		
@@ -31,7 +32,9 @@ public class GiphyResource {
 		return giphySearch;
 	}
 	
-public  GiphySearch getCategories() throws UnsupportedEncodingException {
+	
+	
+	public  Example getCategories() throws UnsupportedEncodingException {
 		
 	
 		
@@ -39,9 +42,9 @@ public  GiphySearch getCategories() throws UnsupportedEncodingException {
 		
 		Log.log(Level.FINE , "Giphy URI : "+ uri);
 		
-		ClientResource cat = new ClientResource(uri);
-		GiphySearch giphyCategories = cat.get(GiphySearch.class);
+		ClientResource cr1 = new ClientResource(uri);
+		Example giphycategories = cr1.get(Example.class);
 		
-		return giphyCategories;
+		return giphycategories;
 	}
 }
