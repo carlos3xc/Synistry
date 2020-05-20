@@ -9,7 +9,7 @@ import org.eclipse.jetty.util.log.Log;
 import org.restlet.resource.ClientResource;
 
 import aiss.model.giphy.Example;
-import aiss.model.giphy.GiphySearch;
+import aiss.model.giphy.Search.GiphySearch;
 
 public class GiphyResource {
 
