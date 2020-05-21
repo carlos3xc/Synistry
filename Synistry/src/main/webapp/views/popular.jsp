@@ -30,6 +30,7 @@
 					      </div>
 					      </c:forEach>
 					    </div>
+
 					    <h1>Categorias Giphy</h1>
   	 		 <div class="row">
 					    <c:forEach items="${requestScope.resultadosCategorias}" var = "resultadoCategorias">
@@ -46,6 +47,7 @@
 					      </div>
 					      </c:forEach>
 					    </div>
+
 
 </main>
     		

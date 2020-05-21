@@ -22,6 +22,7 @@
 		    	</form>
 		    	<c:choose>
 					<c:when test='${empty sessionScope["Deviantart-token"]}'>
+
 					</c:when>
 					<c:otherwise>    	
 					<form id="popularForm" class="text-center" action="/oauth2callback/PopularController" method="get">

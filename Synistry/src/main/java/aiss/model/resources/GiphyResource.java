@@ -11,6 +11,7 @@ import org.restlet.resource.ClientResource;
 import aiss.model.giphy.Example;
 import aiss.model.giphy.Search.GiphySearch;
 
+
 public class GiphyResource {
 
 	private static final String GIPHY_API_KEY="5EBzbT382XIvTh9b2qRxnjmrfwvl6eIq";
@@ -22,7 +23,9 @@ public class GiphyResource {
 	
 		
 		String uri ="https://api.giphy.com/v1/gifs/search?api_key=" + GIPHY_API_KEY +"&q=" +
+
 				URLEncoder.encode(query , "UTF-8") + "&limit=8&offset=&rating=G&lang=es" ;
+
 		
 		Log.log(Level.FINE , "Giphy URI : "+ uri);
 		
@@ -31,6 +34,7 @@ public class GiphyResource {
 		
 		return giphySearch;
 	}
+
 	
 	
 	
@@ -47,4 +51,5 @@ public class GiphyResource {
 		
 		return giphycategories;
 	}
+
 }
