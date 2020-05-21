@@ -4,7 +4,7 @@
         "clientId": "12084",
         "clientSecret": "071a1cd6512a1e4322d847f0478134ec",
         "authorizationFormUrl": "https://www.deviantart.com/oauth2/authorize",
-        "scopes": ["browse"]
+        "scopes": ["browse","comment.post"]
     } ,
  
     "Dribbble": { 

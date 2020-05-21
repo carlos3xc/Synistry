@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import aiss.model.deviantart.Comments;
 import aiss.model.deviantart.Deviation;
-import aiss.model.deviantart.PopularDeviantart;
 import aiss.model.resources.DeviantartResource;
 
 
@@ -26,20 +26,25 @@ public class PublicacionController extends HttpServlet{
 		log.log(Level.FINE, "Accediendo a populares");
 		String id = request.getParameter("deviationId");
 		String token = (String) request.getSession().getAttribute("Deviantart-token");
+	
 		if (token!=null && !"".equals(token)) {
-			DeviantartResource resource = new DeviantartResource(token);
-			Deviation publicacionResult = resource.getPublicacion(id);
+			DeviantartResource deviationResource = new DeviantartResource(token);
+			Comments comentarios = deviationResource.getComments(id);
+			Deviation publicacionResult = deviationResource.getPublicacion(id);
 			
-			if (publicacionResult!=null) {
+			if (comentarios!=null && publicacionResult!=null) {
+				request.setAttribute("coms", comentarios);
 				request.setAttribute("publicacionResult", publicacionResult);
 				request.getRequestDispatcher("/views/publicacion.jsp").forward(request, response);
 			} else {
-				log.warning("Intentando obtener placebo sin token");
+				log.warning("Intentando obtener busqueda sin token");
 				request.getRequestDispatcher("/views/error.jsp").forward(request, response);
 			}
 		} else {
 			request.getRequestDispatcher("/AuthController/Deviantart").forward(request, response);
 		}
+		
+		
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{

@@ -36,7 +36,15 @@
   <url-pattern>/oauth2callback/PublicacionController</url-pattern>
 </servlet-mapping>
 	
-	
+	<servlet>
+  <servlet-name>CommentController</servlet-name>
+  <servlet-class>aiss.controller.comentario.CommentController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>CommentController</servlet-name>
+  <url-pattern>/CommentController</url-pattern>
+</servlet-mapping>
 	
 	
 	<servlet>
