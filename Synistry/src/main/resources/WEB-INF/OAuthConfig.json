@@ -14,7 +14,7 @@
         "clientSecret": "4a634e12b947d3ef9313d79c661bda558b91db5a1ad1a2b9c922415be5bc59be",
         "authorizationFormUrl": "https://dribbble.com/oauth/authorize",
         "scopes": []
-
+    },
      
     "Reddit": { 
         "tokenUrl": "https://www.reddit.com/api/v1/access_token",
