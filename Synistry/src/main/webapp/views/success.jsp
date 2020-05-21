@@ -5,14 +5,13 @@
 <html>
   <head>
   <%@ include file="../masterpage/meta.jsp" %> 
-    <title>Error</title>
+    <title>success</title>
   </head>
-	<body>
+
+<body>
 		<fieldset id = "placebo">
-
-			<legend>Algo ha ido mal</legend>
-		
-
+			<legend>Estado del placebo</legend>
+			<span>Es: <c:out value='${requestScope.resultado}'/></span>
 		</fieldset>
 </body>
    

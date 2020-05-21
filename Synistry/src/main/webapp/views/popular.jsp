@@ -31,6 +31,24 @@
 					      </c:forEach>
 					    </div>
 
+					    <h1>Categorias Giphy</h1>
+  	 		 <div class="row">
+					    <c:forEach items="${requestScope.resultadosCategorias}" var = "resultadoCategorias">
+					      <div class="col-md-4 mb-5">
+					        <div class="card h-100">
+					          <img class="card-img-top" src="<c:url value="${resultadoCategorias.gif.images.original.url}"/>" alt="">
+					          <div class="card-body">
+					            <h4 class="card-title"><c:out value="${resultadoCategorias.nameEncoded}"/></h4>
+					          </div>
+					          <div class="card-footer">
+					            <a href="#" class="btn btn-primary">Abrir</a>
+					          </div>
+					        </div>
+					      </div>
+					      </c:forEach>
+					    </div>
+
+
 </main>
     		
     		

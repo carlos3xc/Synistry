@@ -1,5 +1,5 @@
 
-package aiss.model.giphy;
+package aiss.model.giphy.Search;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,36 +12,49 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "total_count",
-    "count"
+    "onload",
+    "onclick",
+    "onsent"
 })
-public class Pagination {
+public class Analytics {
 
-    @JsonProperty("total_count")
-    private Integer totalCount;
-    @JsonProperty("count")
-    private Integer count;
+    @JsonProperty("onload")
+    private Onload onload;
+    @JsonProperty("onclick")
+    private Onclick onclick;
+    @JsonProperty("onsent")
+    private Onsent onsent;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("total_count")
-    public Integer getTotalCount() {
-        return totalCount;
+    @JsonProperty("onload")
+    public Onload getOnload() {
+        return onload;
     }
 
-    @JsonProperty("total_count")
-    public void setTotalCount(Integer totalCount) {
-        this.totalCount = totalCount;
+    @JsonProperty("onload")
+    public void setOnload(Onload onload) {
+        this.onload = onload;
     }
 
-    @JsonProperty("count")
-    public Integer getCount() {
-        return count;
+    @JsonProperty("onclick")
+    public Onclick getOnclick() {
+        return onclick;
     }
 
-    @JsonProperty("count")
-    public void setCount(Integer count) {
-        this.count = count;
+    @JsonProperty("onclick")
+    public void setOnclick(Onclick onclick) {
+        this.onclick = onclick;
+    }
+
+    @JsonProperty("onsent")
+    public Onsent getOnsent() {
+        return onsent;
+    }
+
+    @JsonProperty("onsent")
+    public void setOnsent(Onsent onsent) {
+        this.onsent = onsent;
     }
 
     @JsonAnyGetter

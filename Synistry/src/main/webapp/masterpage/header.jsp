@@ -35,6 +35,7 @@
 					<c:otherwise>
 						<span class="padding-spacing-sides"> Dribbble Logged</span>
 					</c:otherwise>
+
 				</c:choose>
 				<c:choose>
 					<c:when test='${empty sessionScope["Reddit-token"]}'>
@@ -44,6 +45,7 @@
 						<span> Reddit-token: <c:out value='${sessionScope["Reddit-token"]}'/></span>
 					</c:otherwise>
 				</c:choose>  
+
  </div>  
 	</nav>
 </header>

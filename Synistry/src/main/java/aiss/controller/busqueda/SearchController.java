@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import aiss.model.deviantart.PopularDeviantart;
-import aiss.model.giphy.GiphySearch;
+import aiss.model.giphy.Search.GiphySearch;
 import aiss.model.resources.DeviantartResource;
 import aiss.model.resources.GiphyResource;
 

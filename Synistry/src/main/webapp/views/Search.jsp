@@ -38,6 +38,7 @@
 					          <div class="card-body">
 					            <h4 class="card-title"><c:out value="${publicacionPopular.title}"/></h4>
 					            <p class="card-auhor">Autor: <c:out value="${publicacionPopular.author.username}"/></p>
+
 					            <p class="card-auhor">id: <c:out value="${publicacionPopular.deviationid}"/></p>
 					          </div>
 					          <div class="card-footer">

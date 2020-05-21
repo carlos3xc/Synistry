@@ -1,5 +1,5 @@
 
-package aiss.model.giphy;
+package aiss.model.giphy.Search;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,36 +12,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "total_count",
-    "count"
+    "url"
 })
-public class Pagination {
+public class Onload {
 
-    @JsonProperty("total_count")
-    private Integer totalCount;
-    @JsonProperty("count")
-    private Integer count;
+    @JsonProperty("url")
+    private String url;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("total_count")
-    public Integer getTotalCount() {
-        return totalCount;
+    @JsonProperty("url")
+    public String getUrl() {
+        return url;
     }
 
-    @JsonProperty("total_count")
-    public void setTotalCount(Integer totalCount) {
-        this.totalCount = totalCount;
-    }
-
-    @JsonProperty("count")
-    public Integer getCount() {
-        return count;
-    }
-
-    @JsonProperty("count")
-    public void setCount(Integer count) {
-        this.count = count;
+    @JsonProperty("url")
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @JsonAnyGetter
