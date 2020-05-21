@@ -21,10 +21,32 @@
   		<servlet-class>aiss.controller.popular.PopularController</servlet-class>
 	</servlet>
 
-	<servlet-mapping>
-	  <servlet-name>PopularController</servlet-name>
-	  <url-pattern>/oauth2callback/PopularController</url-pattern>
-	</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>PopularController</servlet-name>
+  <url-pattern>/oauth2callback/PopularController</url-pattern>
+</servlet-mapping>
+	
+	<servlet>
+  <servlet-name>PublicacionController</servlet-name>
+  <servlet-class>aiss.controller.publicacion.PublicacionController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>PublicacionController</servlet-name>
+  <url-pattern>/oauth2callback/PublicacionController</url-pattern>
+</servlet-mapping>
+	
+	<servlet>
+  <servlet-name>CommentController</servlet-name>
+  <servlet-class>aiss.controller.comentario.CommentController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>CommentController</servlet-name>
+  <url-pattern>/CommentController</url-pattern>
+</servlet-mapping>
+
 	
 	
 	<servlet>
