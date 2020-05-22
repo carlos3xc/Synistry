@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import aiss.model.deviantart.PopularDeviantart;
 import aiss.model.giphy.Search.GiphySearch;
+import aiss.model.museum.Collections;
 import aiss.model.resources.DeviantartResource;
 import aiss.model.resources.GiphyResource;
+import aiss.model.resources.MuseumResource;
 
 public class SearchController extends HttpServlet {
 
@@ -44,6 +46,25 @@ protected void doGet(HttpServletRequest request , HttpServletResponse response) 
 		rd= request.getRequestDispatcher("/error.jsp");
 		
 	}
+	
+	
+	
+	
+	log.log(Level.FINE , "Searching gifs of =" + query);
+	MuseumResource res = new MuseumResource();
+	Collections collections = res.getSearch(query);
+	if(collections != null) {
+		request.getRequestDispatcher("/views/Search.jsp");
+		request.setAttribute("resultadosMuseum", collections.getArtObjects());
+		
+	} else {
+		log.log(Level.SEVERE , "eeee" + gifsResult);
+		request.getRequestDispatcher("/error.jsp");
+		
+	}
+	
+	
+	
 	
 	log.log(Level.FINE, "Accediendo a populares");
 	String token = (String) request.getSession().getAttribute("Deviantart-token");

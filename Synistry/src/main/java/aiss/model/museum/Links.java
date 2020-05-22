@@ -1,5 +1,5 @@
 
-package aiss.model.dribbble;
+package aiss.model.museum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,17 +12,27 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "web",
-    "twitter"
+    "self",
+    "web"
 })
 public class Links {
 
+    @JsonProperty("self")
+    private String self;
     @JsonProperty("web")
     private String web;
-    @JsonProperty("twitter")
-    private String twitter;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    @JsonProperty("self")
+    public String getSelf() {
+        return self;
+    }
+
+    @JsonProperty("self")
+    public void setSelf(String self) {
+        this.self = self;
+    }
 
     @JsonProperty("web")
     public String getWeb() {
@@ -32,16 +42,6 @@ public class Links {
     @JsonProperty("web")
     public void setWeb(String web) {
         this.web = web;
-    }
-
-    @JsonProperty("twitter")
-    public String getTwitter() {
-        return twitter;
-    }
-
-    @JsonProperty("twitter")
-    public void setTwitter(String twitter) {
-        this.twitter = twitter;
     }
 
     @JsonAnyGetter
