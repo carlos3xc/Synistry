@@ -16,7 +16,6 @@ import aiss.model.museum.Collections;
 import aiss.model.resources.DeviantartResource;
 import aiss.model.resources.GiphyResource;
 import aiss.model.resources.MuseumResource;
-
 public class SearchController extends HttpServlet {
 
 	
@@ -46,11 +45,10 @@ protected void doGet(HttpServletRequest request , HttpServletResponse response) 
 		rd= request.getRequestDispatcher("/error.jsp");
 		
 	}
+
 	
 	
-	
-	
-	log.log(Level.FINE , "Searching gifs of =" + query);
+	log.log(Level.FINE , "Searching museum of =" + query);
 	MuseumResource res = new MuseumResource();
 	Collections collections = res.getSearch(query);
 	if(collections != null) {
@@ -65,7 +63,7 @@ protected void doGet(HttpServletRequest request , HttpServletResponse response) 
 	
 	
 	
-	
+
 	log.log(Level.FINE, "Accediendo a populares");
 	String token = (String) request.getSession().getAttribute("Deviantart-token");
 	if (token!=null && !"".equals(token)) {

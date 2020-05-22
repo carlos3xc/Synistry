@@ -34,7 +34,6 @@
 					</c:when>
 					<c:otherwise>
 						<span class="padding-spacing-sides"> Dribbble Logged</span>
-						<span class="padding-spacing-sides"> <c:out value= '${sessionScope["Dribbble-token"]}'/></span>
 					</c:otherwise>
 
 				</c:choose>

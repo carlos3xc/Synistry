@@ -13,6 +13,7 @@
   			<%@ include file="../masterpage/header.jsp" %> 
   		
   	 		<main role="main" class="container content">
+
   	 		
   	 		
   	 		<h1>Rijksmuseum</h1>
@@ -32,6 +33,7 @@
 					    </div>
   	 		
   	 		
+
   	 		<h1>Giphy</h1>
   	 		 <div class="row">
   	 		  <c:forEach items="${requestScope.resultadosGiphy}" var = "ResultadoGiphy">
