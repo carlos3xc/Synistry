@@ -10,34 +10,43 @@
 	  </button>
 	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
 	    <ul class="navbar-nav mr-auto">
-	     
 	      <li class="nav-item">
-	        <a class="nav-link" href="/views/aboutUs.jsp">Sobre nosotros</a>
+	      <form class="form-inline " action="/SearchController" method="get">
+		    <input class="form-control mr-sm-2 padding-spacing-sides" type="search" name="query" placeholder="Estilo o concepto..." aria-label="Search">
+		    <button class="btn btn-dark my-2 my-sm-0" type="submit">Buscar</button>
+		    </form>
 	      </li>
-	       
-	    </ul>
+		    </ul>
 			
 			 
 				<c:choose>
 					<c:when test='${empty sessionScope["Deviantart-token"]}'>
-						<a href="/AuthController/Deviantart"class="btn btn-dark btn-lg padding-spacing-sides">Devianart Login</a>
+						<a href="/AuthController/Deviantart"class="btn btn-dark btn-lg padding-spacing-sides">Deviantart Login</a>
 					</c:when>
 					<c:otherwise>
-						<span> Devianart-token: <c:out value='${sessionScope["Deviantart-token"]}'/></span>
-					<form id="placeboForm" action="placeboController" method="post">
-			 			<input type="submit" name="placeboBtn" title="placebo" value="Test api" class="btn btn-dark btn-lg padding-spacing-sides">
-			 		</form>
+						<span class="padding-spacing-sides"> Deviantart Logged </span>
 					</c:otherwise>
 				</c:choose> 
-				
+			
 				<c:choose>
 					<c:when test='${empty sessionScope["Dribbble-token"]}'>
 						<a href="/AuthController/Dribbble"class="btn btn-dark btn-lg padding-spacing-sides">Dribbble Login</a>
 					</c:when>
 					<c:otherwise>
-						<span> Dribbble-token: <c:out value='${sessionScope["Dribbble-token"]}'/></span>
+						<span class="padding-spacing-sides"> Dribbble Logged</span>
+						<span class="padding-spacing-sides"> <c:out value= '${sessionScope["Dribbble-token"]}'/></span>
 					</c:otherwise>
-				</c:choose> 
+
+				</c:choose>
+				<c:choose>
+					<c:when test='${empty sessionScope["Reddit-token"]}'>
+						<a href="https://www.reddit.com/api/v1/authorize?client_id=xcrPycPvI6fEtA&response_type=code&state=random&redirect_uri=http://localhost:8090/oauth2callback/Reddit&scope=read%20save%20vote"class="btn btn-dark btn-lg padding-spacing-sides">Reddit Login</a>
+					</c:when>
+					<c:otherwise>
+						<span> Reddit-token: <c:out value='${sessionScope["Reddit-token"]}'/></span>
+					</c:otherwise>
+				</c:choose>  
+
  </div>  
 	</nav>
 </header>

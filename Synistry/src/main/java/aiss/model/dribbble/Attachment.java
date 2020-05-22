@@ -13,26 +13,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "id",
-    "name",
-    "description",
-    "shots_count",
-    "created_at",
-    "updated_at"
+    "url",
+    "thumbnail_url",
+    "size",
+    "content_type",
+    "created_at"
 })
-public class Project {
+public class Attachment {
 
     @JsonProperty("id")
     private Integer id;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("description")
-    private String description;
-    @JsonProperty("shots_count")
-    private Integer shotsCount;
+    @JsonProperty("url")
+    private String url;
+    @JsonProperty("thumbnail_url")
+    private String thumbnailUrl;
+    @JsonProperty("size")
+    private Integer size;
+    @JsonProperty("content_type")
+    private String contentType;
     @JsonProperty("created_at")
     private String createdAt;
-    @JsonProperty("updated_at")
-    private String updatedAt;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -46,34 +46,44 @@ public class Project {
         this.id = id;
     }
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("url")
+    public String getUrl() {
+        return url;
     }
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
+    @JsonProperty("url")
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    @JsonProperty("description")
-    public String getDescription() {
-        return description;
+    @JsonProperty("thumbnail_url")
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
     }
 
-    @JsonProperty("description")
-    public void setDescription(String description) {
-        this.description = description;
+    @JsonProperty("thumbnail_url")
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 
-    @JsonProperty("shots_count")
-    public Integer getShotsCount() {
-        return shotsCount;
+    @JsonProperty("size")
+    public Integer getSize() {
+        return size;
     }
 
-    @JsonProperty("shots_count")
-    public void setShotsCount(Integer shotsCount) {
-        this.shotsCount = shotsCount;
+    @JsonProperty("size")
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    @JsonProperty("content_type")
+    public String getContentType() {
+        return contentType;
+    }
+
+    @JsonProperty("content_type")
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
     @JsonProperty("created_at")
@@ -84,16 +94,6 @@ public class Project {
     @JsonProperty("created_at")
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
-    }
-
-    @JsonProperty("updated_at")
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    @JsonProperty("updated_at")
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     @JsonAnyGetter

@@ -14,21 +14,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "id",
     "name",
-    "description",
-    "shots_count",
+    "login",
+    "html_url",
+    "avatar_url",
+    "bio",
+    "location",
+    "links",
+    "type",
     "created_at",
     "updated_at"
 })
-public class Project {
+public class Team {
 
     @JsonProperty("id")
     private Integer id;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("description")
-    private String description;
-    @JsonProperty("shots_count")
-    private Integer shotsCount;
+    @JsonProperty("login")
+    private String login;
+    @JsonProperty("html_url")
+    private String htmlUrl;
+    @JsonProperty("avatar_url")
+    private String avatarUrl;
+    @JsonProperty("bio")
+    private String bio;
+    @JsonProperty("location")
+    private String location;
+    @JsonProperty("links")
+    private Links links;
+    @JsonProperty("type")
+    private String type;
     @JsonProperty("created_at")
     private String createdAt;
     @JsonProperty("updated_at")
@@ -56,24 +71,74 @@ public class Project {
         this.name = name;
     }
 
-    @JsonProperty("description")
-    public String getDescription() {
-        return description;
+    @JsonProperty("login")
+    public String getLogin() {
+        return login;
     }
 
-    @JsonProperty("description")
-    public void setDescription(String description) {
-        this.description = description;
+    @JsonProperty("login")
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    @JsonProperty("shots_count")
-    public Integer getShotsCount() {
-        return shotsCount;
+    @JsonProperty("html_url")
+    public String getHtmlUrl() {
+        return htmlUrl;
     }
 
-    @JsonProperty("shots_count")
-    public void setShotsCount(Integer shotsCount) {
-        this.shotsCount = shotsCount;
+    @JsonProperty("html_url")
+    public void setHtmlUrl(String htmlUrl) {
+        this.htmlUrl = htmlUrl;
+    }
+
+    @JsonProperty("avatar_url")
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    @JsonProperty("avatar_url")
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    @JsonProperty("bio")
+    public String getBio() {
+        return bio;
+    }
+
+    @JsonProperty("bio")
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    @JsonProperty("location")
+    public String getLocation() {
+        return location;
+    }
+
+    @JsonProperty("location")
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    @JsonProperty("links")
+    public Links getLinks() {
+        return links;
+    }
+
+    @JsonProperty("links")
+    public void setLinks(Links links) {
+        this.links = links;
+    }
+
+    @JsonProperty("type")
+    public String getType() {
+        return type;
+    }
+
+    @JsonProperty("type")
+    public void setType(String type) {
+        this.type = type;
     }
 
     @JsonProperty("created_at")

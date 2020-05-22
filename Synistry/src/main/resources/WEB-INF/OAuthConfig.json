@@ -4,7 +4,7 @@
         "clientId": "12084",
         "clientSecret": "071a1cd6512a1e4322d847f0478134ec",
         "authorizationFormUrl": "https://www.deviantart.com/oauth2/authorize",
-        "scopes": []
+        "scopes": ["browse","comment.post"]
 
     } ,
  
@@ -14,7 +14,15 @@
         "clientSecret": "4a634e12b947d3ef9313d79c661bda558b91db5a1ad1a2b9c922415be5bc59be",
         "authorizationFormUrl": "https://dribbble.com/oauth/authorize",
         "scopes": []
+    },
+     
+    "Reddit": { 
+        "tokenUrl": "https://www.reddit.com/api/v1/access_token",
+        "clientId": "xcrPycPvI6fEtA",
+        "clientSecret": "UcKoWnbWmsjz3N2vD6lLFuLe5h0",
+        "authorizationFormUrl": "https://www.reddit.com/api/v1/authorize",
+        "scopes": ["read", "save", "vote"]
      }
-
+        
 
 }		

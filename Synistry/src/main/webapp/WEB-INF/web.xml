@@ -15,19 +15,54 @@
 	<welcome-file-list>
 		<welcome-file>HomeServlet</welcome-file>
 	</welcome-file-list>
-	
-	
+		
 	<servlet>
-  <servlet-name>placeboController</servlet-name>
-  <servlet-class>aiss.controller.placeboController</servlet-class>
+
+  <servlet-name>PopularController</servlet-name>
+  <servlet-class>aiss.controller.popular.PopularController</servlet-class>
 </servlet>
 
 <servlet-mapping>
-  <servlet-name>placeboController</servlet-name>
-  <url-pattern>/oauth2callback/placeboController</url-pattern>
+  <servlet-name>PopularController</servlet-name>
+  <url-pattern>/oauth2callback/PopularController</url-pattern>
 </servlet-mapping>
 	
+
+	<servlet>
+  <servlet-name>PublicacionController</servlet-name>
+  <servlet-class>aiss.controller.publicacion.PublicacionController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>PublicacionController</servlet-name>
+  <url-pattern>/oauth2callback/PublicacionController</url-pattern>
+</servlet-mapping>
 	
+	<servlet>
+  <servlet-name>CommentController</servlet-name>
+  <servlet-class>aiss.controller.comentario.CommentController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>CommentController</servlet-name>
+  <url-pattern>/CommentController</url-pattern>
+</servlet-mapping>
+
+
+	
+	
+	<servlet>
+		<servlet-name>SearchController</servlet-name>
+		<servlet-class>aiss.controller.busqueda.SearchController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchController</servlet-name>
+		<url-pattern>/SearchController</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>SearchController</welcome-file>
+	</welcome-file-list>
 	
 	<!--  OAUTH SERVLETS 
   
@@ -46,11 +81,14 @@
   			Our recommendation is that if you expecify X as the provider, the url-pattern of the 
   			initiation servlet could be	/AuthController/X, and the url-pattern of the callback
   			 servlet must be /oauth2callback/X.
+
   -->
-  <!--    Deviantart example -->
   
+  <!--           [ Deviantart ]           -->
   
-  <servlet>
+  <!--    Deviantart Oauth servlet -->
+  <servlet>  
+
     <description></description>
     <display-name>DeviantartAuthController</display-name>
     <servlet-name>DeviantartAuthController</servlet-name>
@@ -64,7 +102,9 @@
     <servlet-name>DeviantartAuthController</servlet-name>
     <url-pattern>/AuthController/Deviantart</url-pattern>
   </servlet-mapping>
-  <servlet>
+  
+  <!--    Deviantart Callback servlet -->
+  <servlet> 
     <description></description>
     <display-name>DeviantartOAuth2Callback</display-name>
     <servlet-name>DeviantartOAuth2Callback</servlet-name>
@@ -75,7 +115,7 @@
     </init-param>
     <init-param>
     	<param-name>onSuccess</param-name>
-    	<param-value>redirect:HomeServlet</param-value>
+    	<param-value>redirect:/</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
@@ -83,7 +123,10 @@
     <url-pattern>/oauth2callback/Deviantart</url-pattern>
   </servlet-mapping>
   
-  <servlet>
+  <!--           [ Dribbble ]           -->
+  
+  <!--    Dribbble Oauth servlet -->
+  <servlet> 
     <description></description>
     <display-name>DribbbleAuthController</display-name>
     <servlet-name>DribbbleAuthController</servlet-name>
@@ -97,7 +140,9 @@
     <servlet-name>DribbbleAuthController</servlet-name>
     <url-pattern>/AuthController/Dribbble</url-pattern>
   </servlet-mapping>
-  <servlet>
+  
+  <!--    Dribbble Callback servlet -->
+  <servlet> 
     <description></description>
     <display-name>DribbbleOAuth2Callback</display-name>
     <servlet-name>DribbbleOAuth2Callback</servlet-name>
@@ -114,5 +159,42 @@
   <servlet-mapping>
     <servlet-name>DribbbleOAuth2Callback</servlet-name>
     <url-pattern>/oauth2callback/Dribbble</url-pattern>
+  </servlet-mapping>
+  
+  <!--           [ Reddit ]           -->
+  <!--    Reddit Oauth servlet -->
+  <servlet>
+    <description></description>
+    <display-name>RedditAuthController</display-name>
+    <servlet-name>RedditAuthController</servlet-name>
+    <servlet-class>aiss.controller.oauth.GenericAuthController</servlet-class>
+    <init-param>
+    	<param-name>provider</param-name>
+    	<param-value>Reddit</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RedditAuthController</servlet-name>
+    <url-pattern>/AuthController/Reddit</url-pattern>
+  </servlet-mapping>
+  
+  <!--    Reddit Callback servlet -->
+  <servlet> 
+    <description></description>
+    <display-name>RedditOAuth2Callback</display-name>
+    <servlet-name>RedditOAuth2Callback</servlet-name>
+    <servlet-class>aiss.controller.oauth.OAuth2Callback</servlet-class>
+    <init-param>
+    	<param-name>provider</param-name>
+    	<param-value>Reddit</param-value>
+    </init-param>
+    <init-param>
+    	<param-name>onSuccess</param-name>
+    	<param-value>redirect:HomeServlet</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RedditOAuth2Callback</servlet-name>
+    <url-pattern>/oauth2callback/Reddit</url-pattern>
   </servlet-mapping>
 </web-app>
