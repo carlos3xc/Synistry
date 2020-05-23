@@ -19,15 +19,12 @@ public class PublicacionController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	private static final Logger log = Logger.getLogger(PublicacionController.class.getName());
-	
-	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
 		log.log(Level.FINE, "Accediendo a populares");
 		String id = request.getParameter("deviationId");
 		String token = (String) request.getSession().getAttribute("Deviantart-token");
-	
-		if (token!=null && !"".equals(token)) {
+		if (token!=null && !"".equals(token)) { 
 			DeviantartResource deviationResource = new DeviantartResource(token);
 			Comments comentarios = deviationResource.getComments(id);
 			Deviation publicacionResult = deviationResource.getPublicacion(id);

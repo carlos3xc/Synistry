@@ -49,7 +49,7 @@
 					</p>
 
 					<a class="btn btn-primary"
-						href=<c:out value="${publicacionResult.url}"/>>Call to Action!</a>
+						href=<c:out value="${publicacionResult.url}"/>>Abrir en web</a>
 				</div>
 				<!-- /.col-md-4 -->
 			</div>

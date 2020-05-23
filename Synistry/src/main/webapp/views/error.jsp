@@ -8,6 +8,7 @@
     <title>Error</title>
   </head>
 	<body>
+		<%@ include file="../masterpage/header.jsp" %> 
 		<fieldset id = "placebo">
 
 			<legend>Algo ha ido mal</legend>
