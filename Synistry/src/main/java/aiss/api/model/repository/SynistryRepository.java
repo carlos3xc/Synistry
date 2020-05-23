@@ -27,6 +27,7 @@ public interface SynistryRepository {
 	public Collection<Idea> searchIdeasByTitleOrTextAndTopic(String query, String topicId);
 	
 	// ----- Boards ------
+	public Board createBoard(Board board);
 	public Board getBoard(String boardId);
 	public Board getPublicBoard(String boardId);
 	public Board getPrivateBoard(String boardId, String password);

@@ -34,6 +34,12 @@ public class Board {
 		this.type = type;
 		this.ideas = new HashSet<Idea>();
 	}
+	
+	public static Board createBoard(String author, String authorURL, String title,
+			String text, String password, BoardType type) {
+		String passwordHash = new Integer(password.hashCode()).toString();
+		return new Board(author, authorURL, title, text, passwordHash, type);
+	}
 
 	public String getId() {	return id;}
 

@@ -18,26 +18,24 @@ public class Idea {
 	private TopicReference topic;
 	private Set<Comment> comments;
 	
-	public Idea(String id, String link, String imageURL, String image, String title, String text, Date date,
+	public Idea(String id, String link, String imageURL, String title, String text, Date date,
 			String topicId, String topicName) {
 		super();
 		this.id = id;
 		this.link = link;
 		this.imageURL = imageURL;
-		this.image = image;
 		this.title = title;
 		this.text = text;
 		this.date = date;
-		this.topic = new TopicReference(topicId, topicName);
+		this.topic = new TopicReference(topicId,topicName);
 		this.comments = new HashSet<Comment>();
 	}
 	
-	public Idea(String id, String link, String imageURL, String image, String title, String text, Date date, TopicReference topic) {
+	public Idea(String id, String link, String imageURL, String title, String text, Date date, TopicReference topic) {
 		super();
 		this.id = id;
 		this.link = link;
 		this.imageURL = imageURL;
-		this.image = image;
 		this.title = title;
 		this.text = text;
 		this.date = date;
@@ -45,13 +43,13 @@ public class Idea {
 		this.comments = new HashSet<Comment>();
 	}
 	
-	public Idea(String link, String imageURL, String image, String title, String text, Date date) {
+	public Idea(String link, String imageURL, String title, String text, String topicId) {
 		this.link = link;
 		this.imageURL = imageURL;
-		this.image = image;
 		this.title = title;
 		this.text = text;
-		this.date = date;
+		this.date = new Date();
+		this.topic = new TopicReference(topicId,"");
 		this.comments = new HashSet<Comment>();
 	}
 
@@ -66,10 +64,6 @@ public class Idea {
 	public String getImageURL() {return imageURL;}
 	
 	public void setImageURL(String imageURL) {this.imageURL = imageURL;}
-	
-	public String getImage() {return image;}
-	
-	public void setImage(String image) {this.image = image;}
 	
 	public String getTitle() {return title;}
 	

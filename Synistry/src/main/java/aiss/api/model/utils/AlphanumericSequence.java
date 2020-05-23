@@ -26,8 +26,8 @@ public class AlphanumericSequence {
 		 * sequenceIndex for it be an alphanumeric sequence of 5 characters*/
 		this.alphabet = "d95q6v4etkf7pwbcyhjx2mun8garz3s";
 		if(1 < stringLenght) {
-			Integer offset = alphabet.length()^(stringLenght-2);
-			this.sequenceIndex = alphabet.length()^(stringLenght-1) + offset;
+			Integer offset = (int) Math.pow(alphabet.length(), 0.5 + stringLenght-2);
+			this.sequenceIndex = (int) Math.pow(alphabet.length(), stringLenght-1) + offset;
 		}else {
 			this.sequenceIndex = 0;
 		}

@@ -20,13 +20,13 @@ public class Comment {
 		this.date = date;
 	}
 
-	public Comment(String author, String authorURL, String text, String externalLink, Date date) {
+	public Comment(String author, String authorURL, String text, String externalLink) {
 		super();
 		this.author = author;
 		this.authorURL = authorURL;
 		this.text = text;
 		this.externalLink = externalLink;
-		this.date = date;
+		this.date = new Date();
 	}
 
 	public String getId() {return id;}
@@ -51,6 +51,10 @@ public class Comment {
 
 	public Date getDate() {
 		return date;
+	}
+	
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 }
