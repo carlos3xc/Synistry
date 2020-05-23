@@ -13,23 +13,28 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "src",
+
+    "filesize",
     "height",
     "width",
-    "transparency",
-    "filesize"
+    "transparency"
+
 })
 public class Content {
 
     @JsonProperty("src")
     private String src;
+
+    @JsonProperty("filesize")
+    private Integer filesize;
+
     @JsonProperty("height")
     private Integer height;
     @JsonProperty("width")
     private Integer width;
     @JsonProperty("transparency")
     private Boolean transparency;
-    @JsonProperty("filesize")
-    private Integer filesize;
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -41,6 +46,16 @@ public class Content {
     @JsonProperty("src")
     public void setSrc(String src) {
         this.src = src;
+    }
+
+    @JsonProperty("filesize")
+    public Integer getFilesize() {
+        return filesize;
+    }
+
+    @JsonProperty("filesize")
+    public void setFilesize(Integer filesize) {
+        this.filesize = filesize;
     }
 
     @JsonProperty("height")
@@ -73,15 +88,6 @@ public class Content {
         this.transparency = transparency;
     }
 
-    @JsonProperty("filesize")
-    public Integer getFilesize() {
-        return filesize;
-    }
-
-    @JsonProperty("filesize")
-    public void setFilesize(Integer filesize) {
-        this.filesize = filesize;
-    }
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {

@@ -1,5 +1,5 @@
 
-package aiss.model.giphy;
+package aiss.model.giphy.Search;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,36 +12,49 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "total_count",
-    "count"
+    "status",
+    "msg",
+    "response_id"
 })
-public class Pagination {
+public class Meta {
 
-    @JsonProperty("total_count")
-    private Integer totalCount;
-    @JsonProperty("count")
-    private Integer count;
+    @JsonProperty("status")
+    private Integer status;
+    @JsonProperty("msg")
+    private String msg;
+    @JsonProperty("response_id")
+    private String responseId;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("total_count")
-    public Integer getTotalCount() {
-        return totalCount;
+    @JsonProperty("status")
+    public Integer getStatus() {
+        return status;
     }
 
-    @JsonProperty("total_count")
-    public void setTotalCount(Integer totalCount) {
-        this.totalCount = totalCount;
+    @JsonProperty("status")
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    @JsonProperty("count")
-    public Integer getCount() {
-        return count;
+    @JsonProperty("msg")
+    public String getMsg() {
+        return msg;
     }
 
-    @JsonProperty("count")
-    public void setCount(Integer count) {
-        this.count = count;
+    @JsonProperty("msg")
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    @JsonProperty("response_id")
+    public String getResponseId() {
+        return responseId;
+    }
+
+    @JsonProperty("response_id")
+    public void setResponseId(String responseId) {
+        this.responseId = responseId;
     }
 
     @JsonAnyGetter

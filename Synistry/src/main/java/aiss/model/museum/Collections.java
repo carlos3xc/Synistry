@@ -1,7 +1,8 @@
 
-package aiss.model.giphy;
+package aiss.model.museum;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -12,26 +13,29 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "total_count",
-    "count"
+    "elapsedMilliseconds",
+    "count",
+    "artObjects"
 })
-public class Pagination {
+public class Collections {
 
-    @JsonProperty("total_count")
-    private Integer totalCount;
+    @JsonProperty("elapsedMilliseconds")
+    private Integer elapsedMilliseconds;
     @JsonProperty("count")
     private Integer count;
+    @JsonProperty("artObjects")
+    private List<ArtObject> artObjects = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("total_count")
-    public Integer getTotalCount() {
-        return totalCount;
+    @JsonProperty("elapsedMilliseconds")
+    public Integer getElapsedMilliseconds() {
+        return elapsedMilliseconds;
     }
 
-    @JsonProperty("total_count")
-    public void setTotalCount(Integer totalCount) {
-        this.totalCount = totalCount;
+    @JsonProperty("elapsedMilliseconds")
+    public void setElapsedMilliseconds(Integer elapsedMilliseconds) {
+        this.elapsedMilliseconds = elapsedMilliseconds;
     }
 
     @JsonProperty("count")
@@ -42,6 +46,16 @@ public class Pagination {
     @JsonProperty("count")
     public void setCount(Integer count) {
         this.count = count;
+    }
+
+    @JsonProperty("artObjects")
+    public List<ArtObject> getArtObjects() {
+        return artObjects;
+    }
+
+    @JsonProperty("artObjects")
+    public void setArtObjects(List<ArtObject> artObjects) {
+        this.artObjects = artObjects;
     }
 
     @JsonAnyGetter

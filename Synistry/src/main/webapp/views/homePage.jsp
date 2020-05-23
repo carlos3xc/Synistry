@@ -22,11 +22,11 @@
 		    	</form>
 		    	<c:choose>
 					<c:when test='${empty sessionScope["Deviantart-token"]}'>
-					<c:out value="${sessionScope['Deviantart-token']}"></c:out>
+
 					</c:when>
 					<c:otherwise>    	
 					<form id="popularForm" class="text-center" action="/oauth2callback/PopularController" method="get">
-			 			<input type="submit" name="popularBtn" title="popular" value="Mostrar Populares" class="btn btn-light btn-lg padding-spacing-vertical">
+			 			<input type="submit" name="popularBtn" title="popular" value="Mostrar Populares de Deviantart y Giphy" class="btn btn-light btn-lg padding-spacing-vertical">
 			 		</form>
 					</c:otherwise>
 				</c:choose> 
@@ -36,4 +36,4 @@
   </body>
    
 </html>
-    
+    z

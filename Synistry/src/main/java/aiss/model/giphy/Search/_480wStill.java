@@ -1,5 +1,5 @@
 
-package aiss.model.giphy;
+package aiss.model.giphy.Search;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,36 +12,49 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "total_count",
-    "count"
+    "url",
+    "width",
+    "height"
 })
-public class Pagination {
+public class _480wStill {
 
-    @JsonProperty("total_count")
-    private Integer totalCount;
-    @JsonProperty("count")
-    private Integer count;
+    @JsonProperty("url")
+    private String url;
+    @JsonProperty("width")
+    private String width;
+    @JsonProperty("height")
+    private String height;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("total_count")
-    public Integer getTotalCount() {
-        return totalCount;
+    @JsonProperty("url")
+    public String getUrl() {
+        return url;
     }
 
-    @JsonProperty("total_count")
-    public void setTotalCount(Integer totalCount) {
-        this.totalCount = totalCount;
+    @JsonProperty("url")
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    @JsonProperty("count")
-    public Integer getCount() {
-        return count;
+    @JsonProperty("width")
+    public String getWidth() {
+        return width;
     }
 
-    @JsonProperty("count")
-    public void setCount(Integer count) {
-        this.count = count;
+    @JsonProperty("width")
+    public void setWidth(String width) {
+        this.width = width;
+    }
+
+    @JsonProperty("height")
+    public String getHeight() {
+        return height;
+    }
+
+    @JsonProperty("height")
+    public void setHeight(String height) {
+        this.height = height;
     }
 
     @JsonAnyGetter

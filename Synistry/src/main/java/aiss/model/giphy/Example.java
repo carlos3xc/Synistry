@@ -2,6 +2,7 @@
 package aiss.model.giphy;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -12,36 +13,49 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "total_count",
-    "count"
+    "data",
+    "pagination",
+    "meta"
 })
-public class Pagination {
+public class Example {
 
-    @JsonProperty("total_count")
-    private Integer totalCount;
-    @JsonProperty("count")
-    private Integer count;
+    @JsonProperty("data")
+    private List<Datum> data = null;
+    @JsonProperty("pagination")
+    private Pagination pagination;
+    @JsonProperty("meta")
+    private Meta meta;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("total_count")
-    public Integer getTotalCount() {
-        return totalCount;
+    @JsonProperty("data")
+    public List<Datum> getData() {
+        return data;
     }
 
-    @JsonProperty("total_count")
-    public void setTotalCount(Integer totalCount) {
-        this.totalCount = totalCount;
+    @JsonProperty("data")
+    public void setData(List<Datum> data) {
+        this.data = data;
     }
 
-    @JsonProperty("count")
-    public Integer getCount() {
-        return count;
+    @JsonProperty("pagination")
+    public Pagination getPagination() {
+        return pagination;
     }
 
-    @JsonProperty("count")
-    public void setCount(Integer count) {
-        this.count = count;
+    @JsonProperty("pagination")
+    public void setPagination(Pagination pagination) {
+        this.pagination = pagination;
+    }
+
+    @JsonProperty("meta")
+    public Meta getMeta() {
+        return meta;
+    }
+
+    @JsonProperty("meta")
+    public void setMeta(Meta meta) {
+        this.meta = meta;
     }
 
     @JsonAnyGetter

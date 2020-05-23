@@ -1,5 +1,5 @@
 
-package aiss.model.giphy;
+package aiss.model.giphy.Search;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,36 +12,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "total_count",
-    "count"
+    "mp4",
+    "mp4_size"
 })
-public class Pagination {
+public class Looping {
 
-    @JsonProperty("total_count")
-    private Integer totalCount;
-    @JsonProperty("count")
-    private Integer count;
+    @JsonProperty("mp4")
+    private String mp4;
+    @JsonProperty("mp4_size")
+    private String mp4Size;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("total_count")
-    public Integer getTotalCount() {
-        return totalCount;
+    @JsonProperty("mp4")
+    public String getMp4() {
+        return mp4;
     }
 
-    @JsonProperty("total_count")
-    public void setTotalCount(Integer totalCount) {
-        this.totalCount = totalCount;
+    @JsonProperty("mp4")
+    public void setMp4(String mp4) {
+        this.mp4 = mp4;
     }
 
-    @JsonProperty("count")
-    public Integer getCount() {
-        return count;
+    @JsonProperty("mp4_size")
+    public String getMp4Size() {
+        return mp4Size;
     }
 
-    @JsonProperty("count")
-    public void setCount(Integer count) {
-        this.count = count;
+    @JsonProperty("mp4_size")
+    public void setMp4Size(String mp4Size) {
+        this.mp4Size = mp4Size;
     }
 
     @JsonAnyGetter

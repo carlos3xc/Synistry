@@ -1,5 +1,5 @@
 
-package aiss.model.giphy;
+package aiss.model.museum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,36 +12,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "total_count",
-    "count"
+    "self",
+    "web"
 })
-public class Pagination {
+public class Links {
 
-    @JsonProperty("total_count")
-    private Integer totalCount;
-    @JsonProperty("count")
-    private Integer count;
+    @JsonProperty("self")
+    private String self;
+    @JsonProperty("web")
+    private String web;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("total_count")
-    public Integer getTotalCount() {
-        return totalCount;
+    @JsonProperty("self")
+    public String getSelf() {
+        return self;
     }
 
-    @JsonProperty("total_count")
-    public void setTotalCount(Integer totalCount) {
-        this.totalCount = totalCount;
+    @JsonProperty("self")
+    public void setSelf(String self) {
+        this.self = self;
     }
 
-    @JsonProperty("count")
-    public Integer getCount() {
-        return count;
+    @JsonProperty("web")
+    public String getWeb() {
+        return web;
     }
 
-    @JsonProperty("count")
-    public void setCount(Integer count) {
-        this.count = count;
+    @JsonProperty("web")
+    public void setWeb(String web) {
+        this.web = web;
     }
 
     @JsonAnyGetter
