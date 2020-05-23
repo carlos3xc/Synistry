@@ -28,23 +28,6 @@
 					</c:otherwise>
 				</c:choose> 
 			
-				<c:choose>
-					<c:when test='${empty sessionScope["Dribbble-token"]}'>
-						<a href="/AuthController/Dribbble"class="btn btn-dark btn-lg padding-spacing-sides">Dribbble Login</a>
-					</c:when>
-					<c:otherwise>
-						<span class="padding-spacing-sides"> Dribbble Logged</span>
-					</c:otherwise>
-
-				</c:choose>
-				<c:choose>
-					<c:when test='${empty sessionScope["Reddit-token"]}'>
-						<a href="https://www.reddit.com/api/v1/authorize?client_id=xcrPycPvI6fEtA&response_type=code&state=random&redirect_uri=http://localhost:8090/oauth2callback/Reddit&scope=read%20save%20vote"class="btn btn-dark btn-lg padding-spacing-sides">Reddit Login</a>
-					</c:when>
-					<c:otherwise>
-						<span> Reddit-token: <c:out value='${sessionScope["Reddit-token"]}'/></span>
-					</c:otherwise>
-				</c:choose>  
 
  </div>  
 	</nav>
