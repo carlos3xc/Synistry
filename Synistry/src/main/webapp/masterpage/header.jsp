@@ -24,6 +24,7 @@
 						<a href="/AuthController/Deviantart"class="btn btn-dark btn-lg padding-spacing-sides">Deviantart Login</a>
 					</c:when>
 					<c:otherwise>
+												<p style="color: white"><c:out value ='${sessionScope["Deviantart-token"]}'/></p>
 						<span class="padding-spacing-sides"> Deviantart Logged </span>
 					</c:otherwise>
 				</c:choose> 

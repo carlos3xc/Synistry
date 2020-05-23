@@ -24,6 +24,8 @@ public class DeviantartResource {
 		this.access_token = access_token;
 	}
 	
+	
+	
 	public PopularDeviantart getPopular() {
 		String uri = "https://www.deviantart.com/api/v1/oauth2/browse/popular";
 		ClientResource cr = new ClientResource(uri);
