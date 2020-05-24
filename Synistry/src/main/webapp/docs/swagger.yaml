@@ -1,0 +1,549 @@
+swagger: '2.0'
+info:
+  description: |
+    This is a the Synistry API to share and oranize your ideas.  You can find 
+    out more about Swagger at 
+    [http://swagger.io](http://swagger.io) or on 
+    [irc.freenode.net, #swagger](http://swagger.io/irc/).
+  version: 1.0.0
+  title: Swagger Synistry API
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: synystry2020@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: synistry.appspot.com
+basePath: /api
+tags:
+- name: idea
+  description: Fetch and interact with ideas
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+- name: comment
+  description: Fetch and interact with ideas
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+- name: board
+  description: Access to the different boards
+# schemes:
+# - http
+paths:
+  /ideas:
+    post:
+      tags:
+      - idea
+      summary: Create and publish a new idea
+      operationId: createIdea
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Idea that you want to publish
+        required: true
+        schema:
+          $ref: '#/definitions/IdeaJSON'
+      responses:
+        400:
+          description: Some validation error
+        404:
+          description: The topic with id=? was not found
+        201:
+          description: Created
+          schema:
+            $ref: '#/definitions/Idea'
+    get:
+      tags:
+      - idea
+      summary: Retrieve all ideas
+      operationId: getAllIdeas
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Idea'
+  /ideas/search:
+    get:
+      tags:
+      - idea
+      summary: Search ideas by a title, text or topic
+      operationId: searchIdeasByTitleOrText
+      produces:
+      - application/json
+      parameters:
+      - name: q
+        in: query
+        description: Keywords separated by commas to search ideas
+        required: true
+        type: array
+        items:
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Idea'
+  /ideas/{ideaId}:
+    get:
+      tags:
+      - idea
+      summary: Find idea by ID
+      description: Returns a single idea
+      operationId: getIdea
+      produces:
+      - application/json
+      parameters:
+      - name: ideaId
+        in: path
+        description: ID of idea to return
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Idea'
+  /ideas/{ideaId}/comments:
+    get:
+      tags:
+      - idea
+      - comment
+      summary: Find comments from idea by ID
+      description: Returns a list of comments
+      operationId: getCommentsFromIdea
+      produces:
+      - application/json
+      parameters:
+      - name: ideaId
+        in: path
+        description: ID of idea from which to retrieve the comments
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Comment'
+  /ideas/{ideaId}/comment:
+    post:
+      tags:
+      - idea
+      - comment
+      summary: Create and publish a new comment within an idea
+      operationId: createComment
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: ideaId
+        in: path
+        description: ID of idea in which you want to comment
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: Comment that you want to puplish
+        required: true
+        schema:
+          $ref: '#/definitions/Comment'
+      responses:
+        405:
+          description: Invalid input
+    
+  /boards:
+    get:
+      tags:
+      - board
+      summary: Fetch all boards in the system
+      description: Fetch all board of any visibility without their ideas
+      operationId: getAllBoards
+      produces:
+      - application/json
+      parameters:
+      - name: fields
+        in: query
+        description: Fields to be serialized in the JSON
+        required: true
+        type: array
+        items:
+          type: string
+          enum:
+          - id
+          - author
+          - authorURL
+          - title
+          - text
+          - type
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Board'
+        400:
+          description: Invalid status value
+    post:
+      tags:
+      - board
+      summary: Create a new Board
+      operationId: createBoard
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: All the attributes that can be filled from board
+        required: true
+        schema:
+          $ref: '#/definitions/BoardJSON'
+      responses:
+        405:
+          description: Invalid input
+  /boards/visibles:
+    get:
+      tags:
+      - board
+      summary: Fetch all boards that are public or protected in the system
+      description: Fetch all boards that are not private, including their ideas
+      operationId: getAllVisible
+      produces:
+      - application/json
+      parameters:
+      - name: fields
+        in: query
+        description: Fields to be serialized in the JSON
+        required: false
+        type: array
+        items:
+          type: string
+          enum:
+          - id
+          - author
+          - authorURL
+          - title
+          - text
+          - type
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Board'
+  /boards/{boardId}:
+    get:
+      tags:
+      - board
+      summary: Find board by ID
+      description: Retrieve a board, in case is private no ideas will be fetched
+      operationId: getBoard
+      produces:
+      - application/json
+      parameters:
+      - name: boardId
+        in: path
+        description: ID of the board you want to retrieve
+        required: true
+        type: string
+      - name: fields
+        in: query
+        description: Fields to be serialized in the JSON
+        required: false
+        type: array
+        items:
+          type: string
+          enum:
+          - id
+          - author
+          - authorURL
+          - title
+          - text
+          - type
+      responses:
+        200:
+          description: OK
+          schema:
+              $ref: '#/definitions/Board'
+    put:
+      tags:
+      - board
+      summary: Update the properties of the board
+      description: To change the properties of a board, it is necessary to provide the correct password
+      operationId: updateBoard
+      produces:
+      - application/json
+      parameters:
+      - name: boardId
+        in: path
+        description: ID of the board you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: The properties to update of the board and the password
+        required: true
+        schema:
+          $ref: '#/definitions/PassswordBoardJSON'
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Invalid status value
+  /boards/{boardId}/add:
+    put:
+      tags:
+      - board
+      summary: Add a list of ideas to a board
+      description: Given the corresponding list of ideas IDs, add them to the board. For a private or protected board, it is necessary to provide the correct password.
+      operationId: addIdeas
+      consumes:
+      - application/json
+      parameters:
+      - name: boardId
+        in: path
+        description: ID of the board you want to add ideas to
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: A list of IDs of the ideas and the password of the board if necessary
+        required: true
+        schema:
+          $ref: '#/definitions/PasswordIdeasJSON'
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Invalid status value
+  /boards/{boardId}/remove:
+    put:
+      tags:
+      - board
+      summary: Remove a list of ideas from board
+      description: Given the corresponding list of ideas IDs, remove them from the board. For a private or protected board, it is necessary to provide the correct password.
+      operationId: removeIdeas
+      consumes:
+      - application/json
+      parameters:
+      - name: boardId
+        in: path
+        description: ID of the board you want to remove ideas from
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: A list of IDs of the ideas and the password of the board if necessary
+        required: true
+        schema:
+          $ref: '#/definitions/PasswordIdeasJSON'
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Invalid status value
+  /boards/{boardId}/{password}:
+    delete:
+      tags:
+      - board
+      summary: Delete a board
+      description: Delete the board given its ID and the corresponding passoword.
+      operationId: deleteBoard
+      consumes:
+      - application/json
+      parameters:
+      - name: boardId
+        in: path
+        description: ID of the board you want to delete
+        required: true
+        type: string
+      - name: password
+        in: path
+        description: Password of the board
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+        400:
+          description: Invalid status value
+definitions:
+  Comment:
+    type: object
+    properties:
+      id:
+        type: string
+        readOnly: true
+      author:
+        type: string
+      authorURL:
+        type: string
+      text:
+        type: string
+      externalLink:
+        type: string
+      date:
+        type: integer
+        format: int32
+        readOnly: true
+  TopicReference:
+    type: object
+    required:
+    - topicId
+    properties:
+      topicId:
+        type: string
+        example: drawing
+        description: The topic this idea is related to
+      topicName:
+        type: string
+        readOnly: true
+  Idea:
+    type: object
+    required:
+    - title
+    - link
+    - imageURL
+    - topicReference
+    properties:
+      id:
+        type: string
+        readOnly: true
+      link:
+        type: string
+        description: The link where you found something inspiring
+      imageURL:
+        type: string
+        description: The image to display
+      title:
+        type: string
+        example: This is the title of an Idea
+      text:
+        type: string
+      date:
+        type: integer
+        format: int32
+        readOnly: true
+      topicReference:
+        $ref: '#/definitions/TopicReference'
+      comments:
+        readOnly: true
+        type: array
+        items: 
+          $ref: '#/definitions/Comment'
+  Board:
+    type: object
+    properties:
+      id:
+        type: string
+        readOnly: true
+      author:
+        type: string
+      authorURL:
+        type: string
+      title:
+        type: string
+      text:
+        type: string
+      type:
+        type: string
+        description: Visibility and permissions of the board
+        enum:
+        - PUBLIC
+        - PROTECTED
+        - PRIVATE
+      ideas:
+        type: array
+        readOnly: true
+        items: 
+          $ref: '#/definitions/Idea'
+  IdeaJSON:
+    type: object
+    required:
+    - title
+    - link
+    - imageURL
+    - topicId
+    properties:
+      link:
+        type: string
+        description: The link where you found something inspiring
+        example: "https://www.amazon.es/Galaxy-Party-Lunch-Napkins-ply/dp/B07H33CMPW"
+      imageURL:
+        type: string
+        description: The image to display
+        example: "https://images-na.ssl-images-amazon.com/images/I/71m5b4QsTKL._AC_SL1500_.jpg"
+      title:
+        type: string
+        example: This is the title of an Idea
+      text:
+        type: string
+      topicId:
+        type: string
+        example: painting
+  BoardJSON:
+    type: object
+    properties:
+      author:
+        type: string
+      password:
+        type: string
+        description: If necessary password of the board necessary to manage it
+      authorURL:
+        type: string
+        example: "https://www.amazon.es/Galaxy-Party-Lunch-Napkins-ply/dp/B07H33CMPW"
+      title:
+        type: string
+      text:
+        type: string
+      type:
+        type: string
+        description: Visibility and permissions of the board to be created
+        enum:
+        - PUBLIC
+        - PROTECTED
+        - PRIVATE
+  PassswordBoardJSON:
+    type: object
+    properties:
+      password:
+        type: string
+        description: If necessary password of the board necessary to manage it
+      board:
+        $ref: '#/definitions/BoardJSON'
+  PasswordIdeasJSON:
+    type: object
+    properties:
+      password:
+        type: string
+        description: If necessary password of the board necessary to manage it
+      ideas:
+        type: array
+        description: List of IDs corresponding to ideas
+        items: 
+          type: string
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+# Added by API Auto Mocking Plugin
+#host: virtserver.swaggerhub.com
+#basePath: /Synistry2020/Synistry2020/1.0.0
+schemes:
+ - https
+ - http

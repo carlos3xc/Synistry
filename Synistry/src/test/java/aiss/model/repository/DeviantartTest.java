@@ -2,6 +2,7 @@ package aiss.model.repository;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import org.junit.Test;
@@ -12,7 +13,7 @@ import aiss.model.deviantart.PopularDeviantart;
 import aiss.model.resources.DeviantartResource;
 
 public class DeviantartTest {
-	String token = "c8c7c9f283feb4444d3f9884e66d96971d4ede7e7afb7da4db"; // necesario actualizar al realizar la prueba
+	String token = "7780108d5141f39d32ed795eb212588195b2586c36048689cf"; // necesario actualizar al realizar la prueba
 
 	@Test
 	public void testGetPublicacion() {
@@ -61,6 +62,22 @@ public class DeviantartTest {
 		System.out.println("Búsqueda testGetComments() con éxito ya que el token "+token+" es correcto");
 		
 		
+	}
+	@Test
+public void addCommentToAnyPublication() throws IOException{
+		DeviantartResource resource = new DeviantartResource(token);
+		// Creamos el token y obtenemos el id de la primera lista. Cogemos como venueId uno cualquiera.
+		Integer max = Math.max(0, resource.getPopular().getResults().size()-1);
+		String Id = resource.getPopular().getResults().get(max).getDeviationid(); 
+		
+		
+	
+		// Añadimos a la primera lista del usuario el lugar dado
+		boolean c = resource.createComment(Id, "cometario cualquiera");
+		
+		// Comprobamos que la búsqueda no devuelve null 
+		assertNotNull("La creación de la lista no devolvió null", c);
+		System.out.println("addCommentToAnyPublication() completado con éxito");
 	}
 
 }
