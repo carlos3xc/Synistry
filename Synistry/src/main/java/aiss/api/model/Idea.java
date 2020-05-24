@@ -4,20 +4,43 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonSerialize(include = Inclusion.NON_NULL)
 public class Idea {
 	
 	private String id;
 	private String link;
 	private String imageURL;
-	private String image;
 	private String title;
 	private String text;
 	private Date date;
 	
 	/*Relationships*/
-	private TopicReference topic;
+	private TopicReference topicReference;
 	private Set<Comment> comments;
 	
+	public Idea() {
+		super();
+	}
+
+	public Idea(String id, String link, String imageURL, String title, String text, Date date, TopicReference topic,
+			Set<Comment> comments) {
+		super();
+		this.id = id;
+		this.link = link;
+		this.imageURL = imageURL;
+		this.title = title;
+		this.text = text;
+		this.date = date;
+		this.topicReference = topic;
+		this.comments = comments;
+	}
+
 	public Idea(String id, String link, String imageURL, String title, String text, Date date,
 			String topicId, String topicName) {
 		super();
@@ -27,7 +50,7 @@ public class Idea {
 		this.title = title;
 		this.text = text;
 		this.date = date;
-		this.topic = new TopicReference(topicId,topicName);
+		this.topicReference = new TopicReference(topicId,topicName);
 		this.comments = new HashSet<Comment>();
 	}
 	
@@ -39,7 +62,7 @@ public class Idea {
 		this.title = title;
 		this.text = text;
 		this.date = date;
-		this.topic = topic;
+		this.topicReference = topic;
 		this.comments = new HashSet<Comment>();
 	}
 	
@@ -49,7 +72,7 @@ public class Idea {
 		this.title = title;
 		this.text = text;
 		this.date = new Date();
-		this.topic = new TopicReference(topicId,"");
+		this.topicReference = new TopicReference(topicId,"");
 		this.comments = new HashSet<Comment>();
 	}
 
@@ -77,9 +100,9 @@ public class Idea {
 	
 	public void setDate(Date date) {this.date = date;}
 	
-	public TopicReference getTopic() {return topic;}
+	public TopicReference getTopicReference() {return topicReference;}
 
-	public void setTopic(TopicReference topic) {this.topic = topic;}
+	public void setTopicReference(TopicReference topic) {this.topicReference = topic;}
 
 	public void setComments(Set<Comment> comments) {
 		this.comments = comments;

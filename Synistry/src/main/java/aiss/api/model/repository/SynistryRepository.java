@@ -11,7 +11,7 @@ import aiss.api.model.Topic;
 public interface SynistryRepository {
 	
 	// ----- Ideas ------
-	public void createIdea(Idea idea);
+	public Idea createIdea(Idea idea);
 	public Idea getIdea(String IdeaId);
 	public Collection<Idea> getAllIdeas();
 	public Collection<Idea> searchIdeasByTitleOrText(String query);

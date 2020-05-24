@@ -5,8 +5,14 @@ import java.util.Set;
 
 import javax.xml.bind.ValidationException;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 import org.eclipse.jetty.util.security.Constraint;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonSerialize(include = Inclusion.NON_NULL)
 public class Topic {
 	private String id;
 	private String name;
@@ -45,23 +51,23 @@ public class Topic {
 	public Set<Idea> getIdeas() {return ideas;}
 	
 	public void addIdea(Idea idea) {
-		if(idea.getTopic()==null||idea.getTopic().equalsToTopic(this)) {
-			idea.setTopic(new TopicReference(getId(),getName()));
+		if(idea.getTopicReference()==null||idea.getTopicReference().equalsToTopic(this)) {
+			idea.setTopicReference(new TopicReference(getId(),getName()));
 			getIdeas().add(idea);
 		} else {
 			throw new ModelException("Topic.addIdea()-> Failed to add Idea("
-					+ idea.getId()+", "+ "title: " + idea.getTitle()+","+ "topicID: "+idea.getTopic().getTopicId()
+					+ idea.getId()+", "+ "title: " + idea.getTitle()+","+ "topicID: "+idea.getTopicReference().getTopicId()
 					+") to topicID" + getId());
 		}
 	}
 	
 	public void removeIdea(Idea idea) {
-		if(idea.getTopic()!=null&&!idea.getTopic().equalsToTopic(this)) {
-			idea.setTopic(null);
+		if(idea.getTopicReference()!=null&&!idea.getTopicReference().equalsToTopic(this)) {
+			idea.setTopicReference(null);
 			getIdeas().remove(idea);
 		} else {
 			throw new ModelException("Topic.removeIdea()-> Failed to remove Idea("
-				+ idea.getId()+", "+ "title: " + idea.getTitle()+","+ "topicID: "+idea.getTopic().getTopicId()
+				+ idea.getId()+", "+ "title: " + idea.getTitle()+","+ "topicID: "+idea.getTopicReference().getTopicId()
 				+") from topicID: " + getId());
 		}
 	}

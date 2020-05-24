@@ -2,6 +2,13 @@ package aiss.api.model;
 
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonSerialize(include = Inclusion.NON_NULL)
 public class Comment {
 	String id;
 	String author;
@@ -10,6 +17,10 @@ public class Comment {
 	String externalLink;
 	Date date;
 	
+	public Comment() {
+		super();
+	}
+
 	public Comment(String id, String author, String authorURL, String text, String externalLink, Date date) {
 		super();
 		this.id = id;

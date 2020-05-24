@@ -141,6 +141,13 @@
 		    <artifactId>apache-jsp</artifactId>
 		    <version>9.4.15.v20190215</version>
 		</dependency>
+		
+		<!-- Apache Common validators (to validate URLs) -->
+		<dependency>
+    		<groupId>commons-validator</groupId>
+    		<artifactId>commons-validator</artifactId>
+    	<version>1.4.0</version>
+</dependency>
 
 	</dependencies>
 

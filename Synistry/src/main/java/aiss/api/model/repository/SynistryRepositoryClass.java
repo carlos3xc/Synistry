@@ -104,14 +104,16 @@ public class SynistryRepositoryClass implements SynistryRepository{
 	}
 
 	@Override
-	public void createIdea(Idea idea) {
+	public Idea createIdea(Idea idea) {
 		idea.setId(ideasSequence.next());
 		idea.setDate(new Date());
-		Topic topic = getTopic(idea.getTopic().getTopicId());
+		idea.setComments(new HashSet<Comment>());
+		Topic topic = getTopic(idea.getTopicReference().getTopicId());
 		/*Just in case, we update de TopicReference within the idea*/
-		idea.setTopic(new TopicReference(idea.getTopic().getTopicId(), topic.getName()));
+		idea.setTopicReference(new TopicReference(idea.getTopicReference().getTopicId(), topic.getName()));
 		topic.addIdea(idea);
 		ideasMap.put(idea.getId(), idea);
+		return idea;
 	}
 
 	@Override
@@ -128,14 +130,13 @@ public class SynistryRepositoryClass implements SynistryRepository{
 	public Collection<Idea> searchIdeasByTitleOrText(String query) {
 		Collection<Idea> res = new HashSet<Idea>();
 		
-		String[] parsedQuery = query.toLowerCase().replaceAll("[,.-;:()/\"]", " ").split("(\\s+)");
+		String[] parsedQuery = query.toLowerCase().replaceAll("[;:()/\"]", "").trim().split(",");
 		Set<String> queryWordSet = new HashSet<String>(Arrays.asList(parsedQuery));
 		
 		for(Idea idea:getAllIdeas()) {
 			if(anyWordIsContainedIn(idea.getTitle(),queryWordSet)
 					||anyWordIsContainedIn(idea.getText(),queryWordSet)
-					||anyWordIsContainedIn(idea.getTopic().getTopicName(),queryWordSet)
-					||anyWordIsContainedIn(idea.getLink(),queryWordSet)) {
+					||anyWordIsContainedIn(idea.getTopicReference().getTopicName(),queryWordSet)) {
 				res.add(idea);
 			}
 		}
@@ -144,9 +145,13 @@ public class SynistryRepositoryClass implements SynistryRepository{
 	
 	private static Boolean anyWordIsContainedIn(String string, Set<String> words) {
 		Boolean res = false;
+		System.out.println("wordSet: " + words.toString());
 		for(String word:words) {
-			res=res||string.contains(word);
-			if(res==true) {break;}
+			word = word.trim();
+			System.out.println("word to check: " + word);
+			if(word.isEmpty()||word.equals(" ")) {continue;}
+			res=res||string.toLowerCase().contains(word);
+			if(res) {break;}
 		}
 		return res;
 	}
@@ -181,14 +186,13 @@ public class SynistryRepositoryClass implements SynistryRepository{
 		Collection<Idea> res = new HashSet<Idea>();
 		Topic topic = topicsMap.get(topicId);
 		
-		String[] parsedQuery = query.toLowerCase().replaceAll("[,.-;:()/\"]", " ").split("(\\s+)");
+		String[] parsedQuery = query.toLowerCase().replaceAll("[;:()/\"]", " ").split(",");
 		Set<String> queryWordSet = new HashSet<String>(Arrays.asList(parsedQuery));
 		
 		for(Idea idea:topic.getIdeas()) {
 			if(anyWordIsContainedIn(idea.getTitle(),queryWordSet)
 					||anyWordIsContainedIn(idea.getText(),queryWordSet)
-					||anyWordIsContainedIn(idea.getTopic().getTopicName(),queryWordSet)
-					||anyWordIsContainedIn(idea.getLink(),queryWordSet)) {
+					||anyWordIsContainedIn(idea.getTopicReference().getTopicName(),queryWordSet)) {
 				res.add(idea);
 			}
 		}

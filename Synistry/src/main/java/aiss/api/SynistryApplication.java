@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
+import aiss.api.resources.BoardResource;
 import aiss.api.resources.IdeaResource;
 
 public class SynistryApplication extends Application{
@@ -15,6 +16,7 @@ public class SynistryApplication extends Application{
 	// so that they can be found by RESTEasy.
 	public SynistryApplication() {
 		singletons.add(IdeaResource.getInstance());
+		singletons.add(BoardResource.getInstance());
 	}
 
 	@Override

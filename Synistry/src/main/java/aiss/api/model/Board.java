@@ -1,19 +1,31 @@
 package aiss.api.model;
 
+
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+@JsonSerialize(include = Inclusion.NON_NULL)
 public class Board {
-	String id;
-	String author;
-	String authorURL;
-	String title;
-	String text;
-	String passwordHash;
+	private String id;
+	private String author;
+	private String authorURL;
+	private String title;
+	private String text;
+	private String passwordHash;
 	BoardType type;
 	private Set<Idea> ideas;
 	
-	public Board(String id, String author, String authorURL, String title,String text, String passwordHash, BoardType type) {
+	public Board() {
+		super();
+	}
+
+	public Board(String id, String author, String authorURL, String title,String text, String passwordHash, BoardType type, Set<Idea> ideas) {
 		super();
 		this.id = id;
 		this.author = author;
@@ -22,7 +34,7 @@ public class Board {
 		this.text = text;
 		this.passwordHash = passwordHash;
 		this.type = type;
-		this.ideas = new HashSet<Idea>();
+		this.ideas = ideas;
 	}
 	
 	public Board(String author, String authorURL, String title,String text, String passwordHash, BoardType type) {
@@ -72,7 +84,7 @@ public class Board {
 	
 	public Set<Idea> getIdeas() {return ideas;}
 	
-	//public void setIdeas(Collection<Idea> ideas) {	this.ideas = ideas;	}
+	public void setIdeas(Set<Idea> ideas) {	this.ideas = ideas;	}
 	
 	public Boolean addIdea(Idea idea) {
 		return getIdeas().add(idea);
@@ -80,6 +92,44 @@ public class Board {
 	
 	public Boolean removeIdea(Idea idea) {
 		return getIdeas().remove(idea);
+	}
+	
+	public Board filterFields(Set<String> includedFields) {
+		Board res;
+		if(includedFields==null||includedFields.isEmpty()) {
+			res = new Board(getId(), getAuthor(), getAuthorURL(), getTitle(), getText(), null, getType(), getIdeas());
+		}else {
+			res = new Board();
+			if(includedFields.contains("id")) {
+				res.setId(getId());
+			}
+			if(includedFields.contains("author")) {
+				res.setAuthor(getAuthor());
+			}
+			if(includedFields.contains("authorURL")) {
+				res.setAuthorURL(getAuthorURL());
+			}
+			if(includedFields.contains("title")) {
+				res.setTitle(getTitle());
+			}
+			if(includedFields.contains("text")) {
+				res.setText(getText());
+			}
+			if(includedFields.contains("type")) {
+				res.setType(getType());
+			}
+			if(includedFields.contains("ideas")) {
+				res.setIdeas(getIdeas());
+			}
+		}
+		
+		return res;
+	}
+	
+	/*Return a copy of the board with no passwordHash and null ideas*/
+	public Board secureBoard() {
+		Board res = new Board(getId(), getAuthor(), getAuthorURL(), getTitle(), getText(), null, getType(), null);
+		return res;
 	}
 	
 }
