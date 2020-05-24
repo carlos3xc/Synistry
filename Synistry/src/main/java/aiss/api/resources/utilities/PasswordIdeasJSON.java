@@ -38,9 +38,6 @@ public class PasswordIdeasJSON {
 	@JsonProperty("ideas")
 	public void setIdeasIds(Collection<String> ideasIds) {
 		this.ideasIds = ideasIds;
-	}
-	
-	
-	
+	}	
 	
 }

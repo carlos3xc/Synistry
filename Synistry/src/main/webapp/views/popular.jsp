@@ -23,13 +23,34 @@
 					            <h4 class="card-title"><c:out value="${publicacionPopular.title}"/></h4>
 					            <p class="card-auhor">Autor: <c:out value="${publicacionPopular.author.username}"/></p>
 					          </div>
-					          <div class="card-footer">
-					            <a href="#" class="btn btn-primary">Abrir</a>
+					         <div class="card-footer">
+					          <form class="form-search-landing" action="/oauth2callback/PublicacionController" method="get">
+					          <input class="form-control padding-spacing-vertical" name="deviationId"  type="hidden" value="${publicacionPopular.deviationid}">
+					          <button class="btn btn-primary" type="submit">Abrir</button>
+					          </form>
 					          </div>
 					        </div>
 					      </div>
 					      </c:forEach>
 					    </div>
+
+					    <h1>Categorias Giphy</h1>
+  	 		 <div class="row">
+					    <c:forEach items="${requestScope.resultadosCategorias}" var = "resultadoCategorias">
+					      <div class="col-md-4 mb-5">
+					        <div class="card h-100">
+					          <img class="card-img-top" src="<c:url value="${resultadoCategorias.gif.images.original.url}"/>" alt="">
+					          <div class="card-body">
+					            <h4 class="card-title"><c:out value="${resultadoCategorias.nameEncoded}"/></h4>
+					          </div>
+					          <div class="card-footer">
+					            <a href="<c:url value="${resultadoCategorias.gif.url}"/>" class="btn btn-primary">Abrir en web</a>
+					          </div>
+					        </div>
+					      </div>
+					      </c:forEach>
+					    </div>
+
 
 </main>
     		

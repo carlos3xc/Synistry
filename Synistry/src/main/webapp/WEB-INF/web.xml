@@ -40,14 +40,40 @@
 	</welcome-file-list>
 		
 	<servlet>
-  		<servlet-name>PopularController</servlet-name>
-  		<servlet-class>aiss.controller.popular.PopularController</servlet-class>
-	</servlet>
 
-	<servlet-mapping>
-	  <servlet-name>PopularController</servlet-name>
-	  <url-pattern>/oauth2callback/PopularController</url-pattern>
-	</servlet-mapping>
+  <servlet-name>PopularController</servlet-name>
+  <servlet-class>aiss.controller.popular.PopularController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>PopularController</servlet-name>
+  <url-pattern>/oauth2callback/PopularController</url-pattern>
+</servlet-mapping>
+
+	
+
+	<servlet>
+  <servlet-name>PublicacionController</servlet-name>
+  <servlet-class>aiss.controller.publicacion.PublicacionController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>PublicacionController</servlet-name>
+  <url-pattern>/oauth2callback/PublicacionController</url-pattern>
+</servlet-mapping>
+	
+	
+	<servlet>
+  <servlet-name>CommentController</servlet-name>
+  <servlet-class>aiss.controller.comentario.CommentController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>CommentController</servlet-name>
+  <url-pattern>/CommentController</url-pattern>
+</servlet-mapping>
+
+
 	
 	
 	<servlet>
@@ -80,12 +106,14 @@
   			Our recommendation is that if you expecify X as the provider, the url-pattern of the 
   			initiation servlet could be	/AuthController/X, and the url-pattern of the callback
   			 servlet must be /oauth2callback/X.
+
   -->
   
   <!--           [ Deviantart ]           -->
   
   <!--    Deviantart Oauth servlet -->
   <servlet>  
+
     <description></description>
     <display-name>DeviantartAuthController</display-name>
     <servlet-name>DeviantartAuthController</servlet-name>
@@ -194,5 +222,4 @@
     <servlet-name>RedditOAuth2Callback</servlet-name>
     <url-pattern>/oauth2callback/Reddit</url-pattern>
   </servlet-mapping>
-  
 </web-app>

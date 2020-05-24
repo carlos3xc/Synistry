@@ -13,6 +13,27 @@
   			<%@ include file="../masterpage/header.jsp" %> 
   		
   	 		<main role="main" class="container content">
+
+  	 		
+  	 		
+  	 		<h1>Rijksmuseum</h1>
+  	 		 <div class="row">
+  	 		  <c:forEach items="${requestScope.resultadosMuseum}" var = "resultadoMuseum">
+					      <div class="col-md-4 mb-5">
+					        <div class="card h-100">
+					          <img class="card-img-top" src="<c:url value="${resultadoMuseum.webImage.url}"/>" alt="">
+					          <div class="card-body">
+					            <h4 class="card-title"><c:out value="${resultadoMuseum.title}"/></h4>
+					             <p class="card-auhor">Autor: <c:out value="${resultadoMuseum.principalOrFirstMaker}"/></p>
+					          </div>
+					    
+					        </div>
+					      </div>
+					    </c:forEach>
+					    </div>
+  	 		
+  	 		
+
   	 		<h1>Giphy</h1>
   	 		 <div class="row">
   	 		  <c:forEach items="${requestScope.resultadosGiphy}" var = "ResultadoGiphy">
@@ -23,7 +44,7 @@
 					            <h4 class="card-title"><c:out value="${ResultadoGiphy.title}"/></h4>
 					          </div>
 					          <div class="card-footer">
-					            <a href="#" class="btn btn-primary">Abrir</a>
+					            <a href="<c:url value="${ResultadoGiphy.url}"/>" class="btn btn-primary">Abrir en web</a>
 					          </div>
 					        </div>
 					      </div>
@@ -38,9 +59,14 @@
 					          <div class="card-body">
 					            <h4 class="card-title"><c:out value="${publicacionPopular.title}"/></h4>
 					            <p class="card-auhor">Autor: <c:out value="${publicacionPopular.author.username}"/></p>
+
+					            <p class="card-auhor">id: <c:out value="${publicacionPopular.deviationid}"/></p>
 					          </div>
 					          <div class="card-footer">
-					            <a href="#" class="btn btn-primary">Abrir</a>
+					          <form class="form-search-landing" action="/oauth2callback/PublicacionController" method="get">
+					          <input class="form-control padding-spacing-vertical" name="deviationId"  type="hidden" value="${publicacionPopular.deviationid}">
+					          <button class="btn btn-primary" type="submit">Abrir</button>
+					          </form>
 					          </div>
 					        </div>
 					      </div>

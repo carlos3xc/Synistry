@@ -8,9 +8,12 @@
     <title>Error</title>
   </head>
 	<body>
+		<%@ include file="../masterpage/header.jsp" %> 
 		<fieldset id = "placebo">
-			<legend>Estado del placebo</legend>
-			<span>Es: <c:out value='${requestScope.resultado}'/></span>
+
+			<legend>Algo ha ido mal</legend>
+		
+
 		</fieldset>
 </body>
    
