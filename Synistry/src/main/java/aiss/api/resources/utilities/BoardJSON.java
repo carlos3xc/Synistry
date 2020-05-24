@@ -94,7 +94,13 @@ public class BoardJSON {
 		default:
 			boardType = null;
 		}
-		String passwordHash = new Integer(password.hashCode()).toString();
+		String passwordHash;
+		if(getPassword()!=null) {
+			passwordHash = new Integer(password.hashCode()).toString();
+		}else {
+			passwordHash = null;
+		}
+		
 		return new Board(getAuthor(), getAuthorURL(), getTitle(), getText(), passwordHash, boardType);
 	}
 	

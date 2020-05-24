@@ -31,7 +31,8 @@ public interface SynistryRepository {
 	public Board getBoard(String boardId);
 	public Board getPublicBoard(String boardId);
 	public Board getPrivateBoard(String boardId, String password);
-	public void updatePrivateBoard(Board board, String password);
+	public void updateBoard(Board board, String password);
+	public void deletePrivateBoard(String boardId, String password);
 	public void updateBoardType(String boardId, String password, BoardType boardType);
 	public void updateBoardPassword(String boardId, String password, String newPassword);
 	public Collection<Board> getAllBoards();

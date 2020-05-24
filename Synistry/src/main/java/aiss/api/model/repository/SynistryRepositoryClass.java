@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.jboss.resteasy.spi.BadRequestException;
+import org.jboss.resteasy.spi.NotFoundException;
+
 import aiss.api.model.Board;
 import aiss.api.model.BoardType;
 import aiss.api.model.Comment;
@@ -224,6 +227,15 @@ public class SynistryRepositoryClass implements SynistryRepository{
 		Board res = null;
 		Board board = getBoard(boardId);
 		String passwordHash = new Integer(password.hashCode()).toString();
+		if(board==null) {
+			throw new NotFoundException("The board with id="+ boardId +" was not found");
+		}
+		if(!board.getType().equals(BoardType.PRIVATE)) {
+			throw new NotFoundException("The board with id="+ boardId +" was not found or is not private");
+		}
+		if(!board.getPasswordHash().equals(passwordHash)) {
+			throw new BadRequestException("The password is not correct");
+		}
 		if(board.getType().equals(BoardType.PRIVATE)
 				&&board.getPasswordHash().equals(passwordHash)) {
 			res = getBoard(boardId);
@@ -232,14 +244,47 @@ public class SynistryRepositoryClass implements SynistryRepository{
 	}
 
 	@Override
-	public void updatePrivateBoard(Board board, String password) {
+	public void updateBoard(Board board, String password) {
 		Board previousBoard = getBoard(board.getId());
 		String passwordHash = new Integer(password.hashCode()).toString();
+		if(!board.getPasswordHash().equals(passwordHash)) {
+			throw new BadRequestException("The password is not correct");
+		}
 		if(previousBoard.getPasswordHash().equals(passwordHash)) {
+			board.setIdeas(previousBoard.getIdeas());
+			if(board.getAuthor()==null) {
+				board.setAuthor(previousBoard.getAuthor());
+			}
+			if(board.getAuthorURL()==null) {
+				board.setAuthorURL(previousBoard.getAuthorURL());
+			}
+			if(board.getTitle()==null||board.getTitle().isEmpty()) {
+				board.setTitle(previousBoard.getTitle());
+			}
+			if(board.getText()==null) {
+				board.setText(previousBoard.getText());
+			}
+			if(board.getType()==null) {
+				board.setType(previousBoard.getType());
+			}
+			if(board.getPasswordHash()==null) {
+				board.setPasswordHash(previousBoard.getPasswordHash());
+			}
 			boardsMap.put(board.getId(), board);
 		}else {
 		}
 		
+	}
+	
+	@Override
+	public void deletePrivateBoard(String boardId, String password) {
+		Board board = getBoard(boardId);
+		String passwordHash = new Integer(password.hashCode()).toString();
+		if(board.getPasswordHash().equals(passwordHash)) {
+			board.setIdeas(board.getIdeas());
+			boardsMap.remove(boardId);
+		}else {
+		}
 	}
 
 	@Override
@@ -518,5 +563,7 @@ public class SynistryRepositoryClass implements SynistryRepository{
 		
 		return res;
 	}
+
+
 
 }
