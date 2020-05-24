@@ -112,6 +112,10 @@ public class SynistryRepositoryClass implements SynistryRepository{
 		idea.setDate(new Date());
 		idea.setComments(new HashSet<Comment>());
 		Topic topic = getTopic(idea.getTopicReference().getTopicId());
+		if(topic==null) {
+			throw new NotFoundException("The topic with id="+ idea.getTopicReference().getTopicId() +" was not found");
+		}
+		
 		/*Just in case, we update de TopicReference within the idea*/
 		idea.setTopicReference(new TopicReference(idea.getTopicReference().getTopicId(), topic.getName()));
 		topic.addIdea(idea);

@@ -45,14 +45,14 @@ public class IdeaResource {
 	
 	@GET
 	@Produces("application/json")	
-	public Collection<Idea> getAll(){
+	public Collection<Idea> getAllIdeas(){
 		return repository.getAllIdeas();
 	}
 	
 	@GET
-	@Path("/{id}")
+	@Path("/{ideaId}")
 	@Produces("application/json")	
-	public Idea getIdea(@PathParam("id") String ideaId){
+	public Idea getIdea(@PathParam("ideaId") String ideaId){
 		
 		Idea idea = repository.getIdea(ideaId);
 		if(idea==null) {
@@ -63,9 +63,9 @@ public class IdeaResource {
 	}
 	
 	@GET
-	@Path("/{id}/comments")
+	@Path("/{ideaId}/comments")
 	@Produces("application/json")	
-	public Collection<Comment> getCommentsFromIdea(@PathParam("id") String ideaId){
+	public Collection<Comment> getCommentsFromIdea(@PathParam("ideaId") String ideaId){
 		Idea idea = repository.getIdea(ideaId);
 		if(idea==null) {
 			throw new NotFoundException("The idea with id="+ ideaId +" was not found");	
@@ -74,10 +74,10 @@ public class IdeaResource {
 	}
 	
 	@POST
-	@Path("/{id}/comment")
+	@Path("/{ideaId}/comment")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Response createComment(@Context UriInfo uriInfo, @PathParam("id") String ideaId, Comment comment){
+	public Response createComment(@Context UriInfo uriInfo, @PathParam("ideaId") String ideaId, Comment comment){
 		validateComment(comment);
 		
 		Idea idea = repository.getIdea(ideaId);

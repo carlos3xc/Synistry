@@ -12,7 +12,7 @@ import aiss.model.deviantart.PopularDeviantart;
 import aiss.model.resources.DeviantartResource;
 
 public class DeviantartTest {
-	String token = "6c53e365c85a206eda741a32a62022902c4647bdf607bdd8ba"; // necesario actualizar al realizar la prueba
+	String token = "c8c7c9f283feb4444d3f9884e66d96971d4ede7e7afb7da4db"; // necesario actualizar al realizar la prueba
 
 	@Test
 	public void testGetPublicacion() {

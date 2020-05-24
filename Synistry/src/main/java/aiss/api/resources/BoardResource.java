@@ -51,7 +51,7 @@ public class BoardResource {
 	
 	@GET
 	@Produces("application/json")	
-	public Collection<Board> getAll(@QueryParam("fields") String fields){
+	public Collection<Board> getAllBoards(@QueryParam("fields") String fields){
 		Set<String> includedFields;
 		if(fields!=null&&!fields.isEmpty()) {
 			String[] parsedFields = fields.toLowerCase().trim().split(",");
@@ -67,9 +67,9 @@ public class BoardResource {
 	}
 	
 	@GET
-	@Path("/{id}")
+	@Path("/{boardId}")
 	@Produces("application/json")	
-	public Board getBoard(@QueryParam("fields") String fields, @PathParam("id") String boardId){
+	public Board getBoard(@QueryParam("fields") String fields, @PathParam("boardId") String boardId){
 		Board res;
 		Set<String> includedFields;
 		if(fields!=null&&!fields.isEmpty()) {
@@ -90,10 +90,10 @@ public class BoardResource {
 	}
 	
 	@POST
-	@Path("/private/{id}")
+	@Path("/private/{boardId}")
 	@Consumes("application/json")
 	@Produces("application/json")	
-	public Board getPrivateBoard(@QueryParam("fields") String fields, @PathParam("id") String boardId, PasswordBoardJSON passwordBoardJSON){
+	public Board getPrivateBoard(@QueryParam("fields") String fields, @PathParam("boardId") String boardId, PasswordBoardJSON passwordBoardJSON){
 		Board res;
 		Set<String> includedFields;
 		if(fields!=null&&!fields.isEmpty()) {
@@ -111,10 +111,9 @@ public class BoardResource {
 	}
 	
 	@PUT
-	@Path("/{id}")
+	@Path("/{boardId}")
 	@Consumes("application/json")
-	@Produces("application/json")	
-	public Response updateBoard(@PathParam("id") String boardId, PasswordBoardJSON passwordBoardJSON){
+	public Response updateBoard(@PathParam("boardId") String boardId, PasswordBoardJSON passwordBoardJSON){
 		validatePassword(passwordBoardJSON);
 		Board savedBoard = repository.getPrivateBoard(boardId, passwordBoardJSON.getPassword());
 		if(savedBoard==null) {
@@ -132,10 +131,9 @@ public class BoardResource {
 	}
 	
 	@PUT
-	@Path("/{id}/add")
+	@Path("/{boardId}/add")
 	@Consumes("application/json")
-	@Produces("application/json")	
-	public Response addIdeas(@PathParam("id") String boardId, PasswordIdeasJSON passwordIdeasJSON){
+	public Response addIdeas(@PathParam("boardId") String boardId, PasswordIdeasJSON passwordIdeasJSON){
 		validate(passwordIdeasJSON);
 		repository.addIdeas(passwordIdeasJSON.getIdeasIds(), boardId, passwordIdeasJSON.getPassword());
 				
@@ -143,10 +141,9 @@ public class BoardResource {
 	}
 	
 	@PUT
-	@Path("/{id}/remove")
+	@Path("/{boardId}/remove")
 	@Consumes("application/json")
-	@Produces("application/json")	
-	public Response removeIdeas(@PathParam("id") String boardId, PasswordIdeasJSON passwordIdeasJSON){
+	public Response removeIdeas(@PathParam("boardId") String boardId, PasswordIdeasJSON passwordIdeasJSON){
 		validate(passwordIdeasJSON);
 		repository.removeIdeas(passwordIdeasJSON.getIdeasIds(), boardId, passwordIdeasJSON.getPassword());
 				
@@ -161,9 +158,8 @@ public class BoardResource {
 
 	
 	@DELETE
-	@Consumes("application/json")
-	@Path("/{id}/{password}")
-	public Response deleteBoard(@PathParam("id") String boardId, @PathParam("password") String password){
+	@Path("/{boardId}/{password}")
+	public Response deleteBoard(@PathParam("boardId") String boardId, @PathParam("password") String password){
 		if(password==null||password.isEmpty()) {
 			throw new BadRequestException("A password must be provided to administer a Board");
 		}
