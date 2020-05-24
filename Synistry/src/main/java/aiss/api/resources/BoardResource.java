@@ -30,6 +30,7 @@ import aiss.api.model.repository.SynistryRepository;
 import aiss.api.model.repository.SynistryRepositoryClass;
 import aiss.api.resources.utilities.BoardJSON;
 import aiss.api.resources.utilities.PasswordBoardJSON;
+import aiss.api.resources.utilities.PasswordIdeasJSON;
 
 @Path("/boards")
 public class BoardResource {
@@ -127,6 +128,34 @@ public class BoardResource {
 	private void validatePassword(PasswordBoardJSON passwordBoardJSON) {
 		if(passwordBoardJSON.getPassword()==null||passwordBoardJSON.getPassword().isEmpty()) {
 			throw new BadRequestException("A password must be provided to administer a Board");
+		}
+	}
+	
+	@PUT
+	@Path("/{id}/add")
+	@Consumes("application/json")
+	@Produces("application/json")	
+	public Response addIdeas(@PathParam("id") String boardId, PasswordIdeasJSON passwordIdeasJSON){
+		validate(passwordIdeasJSON);
+		repository.addIdeas(passwordIdeasJSON.getIdeasIds(), boardId, passwordIdeasJSON.getPassword());
+				
+		return Response.noContent().build();
+	}
+	
+	@PUT
+	@Path("/{id}/remove")
+	@Consumes("application/json")
+	@Produces("application/json")	
+	public Response removeIdeas(@PathParam("id") String boardId, PasswordIdeasJSON passwordIdeasJSON){
+		validate(passwordIdeasJSON);
+		repository.removeIdeas(passwordIdeasJSON.getIdeasIds(), boardId, passwordIdeasJSON.getPassword());
+				
+		return Response.noContent().build();
+	}
+	
+	private void validate(PasswordIdeasJSON passwordIdeasJSON) {
+		if(passwordIdeasJSON.getIdeasIds()==null||passwordIdeasJSON.getIdeasIds().isEmpty()) {
+			throw new NotFoundException("No ideas were found in HTTP request.");	
 		}
 	}
 

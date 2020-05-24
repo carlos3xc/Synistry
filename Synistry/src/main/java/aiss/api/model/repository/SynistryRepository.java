@@ -16,6 +16,7 @@ public interface SynistryRepository {
 	public Collection<Idea> getAllIdeas();
 	public Collection<Idea> searchIdeasByTitleOrText(String query);
 	//public void deleteIdea(String ideaId);
+	public Collection<Idea> getIdeasByCollectionIds(Collection<String> ids);
 	
 	// ----- Comments ------
 	public void createComment(Comment comment, String ideaId);
@@ -40,6 +41,8 @@ public interface SynistryRepository {
 	public void addIdeaToPublicBoard(Idea idea, String boardId);
 	public void addIdeaToProtectedOrPrivateBoard(Idea idea, String boardId, String password);
 	public void removeIdeaFromBoard(String ideaId, String boardId, String password);
+	public void addIdeas(Collection<String> ids, String boardId, String password);
+	public void removeIdeas(Collection<String> ids, String boardId, String password);
 	
 
 }

@@ -353,6 +353,65 @@ public class SynistryRepositoryClass implements SynistryRepository{
 		}
 	}
 	
+	@Override
+	public Collection<Idea> getIdeasByCollectionIds(Collection<String> ids) {
+		Collection<Idea> res = new HashSet<Idea>();
+		for(String ideaId:ids) {
+			Idea idea = getIdea(ideaId);
+			if(idea==null) {
+				throw new NotFoundException("The idea with id="+ ideaId +" was not found");
+			}else {
+				res.add(idea);			
+			}
+		}
+		
+		return res;
+	}
+
+	@Override
+	public void addIdeas(Collection<String> ids, String boardId, String password) {
+		Board board = getBoard(boardId);
+		if(board==null) {
+			throw new NotFoundException("The board with id="+ boardId +" was not found");	
+		}
+		Collection<Idea> ideas = getIdeasByCollectionIds(ids);
+		if(board.getType().equals(BoardType.PUBLIC)) {
+			board.getIdeas().addAll(ideas);
+		}else {
+			if(password==null||password.isEmpty()) {
+				throw new BadRequestException("The password was not provided");
+			}
+			String passwordHash = new Integer(password.hashCode()).toString();
+			if(!board.getPasswordHash().equals(passwordHash)) {
+				throw new BadRequestException("The password is not correct");
+			}
+			board.getIdeas().addAll(ideas);
+		}
+		
+	}
+
+	@Override
+	public void removeIdeas(Collection<String> ids, String boardId, String password) {
+		Board board = getBoard(boardId);
+		if(board==null) {
+			throw new NotFoundException("The board with id="+ boardId +" was not found");	
+		}
+		Collection<Idea> ideas = getIdeasByCollectionIds(ids);
+		if(board.getType().equals(BoardType.PUBLIC)) {
+			board.getIdeas().removeAll(ideas);
+		}else {
+			if(password==null||password.isEmpty()) {
+				throw new BadRequestException("The password was not provided");
+			}
+			String passwordHash = new Integer(password.hashCode()).toString();
+			if(!board.getPasswordHash().equals(passwordHash)) {
+				throw new BadRequestException("The password is not correct");
+			}
+			board.getIdeas().removeAll(ideas);
+		}
+		
+	}
+
 	private void initTopics(Map<String, Topic> topicsMap) {
 		
 		Topic topic1drawing = new Topic("drawing","Dibujo", "");
